@@ -66,14 +66,14 @@ export default class Login extends Component {
                         <img src={logo} alt="Avatar" className="avatar" />
                     </div>
                     <div className="container">
-                        <label ><b>Username</b></label>
+                        <label ><b>Usuario</b></label>
                         <input
                             type="text"
-                            placeholder="Usuário ou E-mail"
+                            placeholder="Usuário"
                             onChange={e => this.setState({ name: e.target.value })}
                         />
 
-                        <label ><b>Password</b></label>
+                        <label ><b>Senha</b></label>
                         <input
                             type="password"
                             placeholder="Senha"

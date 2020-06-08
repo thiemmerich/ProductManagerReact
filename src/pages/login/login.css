@@ -1,5 +1,5 @@
   .login-main-screen {
-      background: #000000;
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
 
   button {
     background-color: #4CAF50;
-    color: white;
+    color: #ccc;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -28,6 +28,14 @@
 
   button:hover {
     opacity: 0.8;
+  }
+
+  form {
+    border: 1px solid #ccc;
+  }
+
+  label {
+      color: #ccc;
   }
   
   img.avatar {
