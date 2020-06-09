@@ -3,12 +3,24 @@ import api from '../../services/api';
 
 import './main.css';
 
+import Cadastro from '../../components/Cadastro/Cadastro';
+import Modal from '../../components/Cadastro/Modal';
+
 export default class Main extends Component {
 
     state = {
         products: [],
         productInfo: {},
-        page: 1
+        page: 1,
+        show: false
+    }
+
+    showModal = () => {
+        this.setState({ show: true });
+    }
+
+    hideModal = () => {
+        this.setState({ show: false });
     }
 
     componentDidMount() {
@@ -26,20 +38,17 @@ export default class Main extends Component {
         const { products } = this.state;
 
         return (
-            <div className='product-list'>
-                {products.map( product => (
-                    <article key={product._id}>
-                        <strong>{product.nome}</strong>
-                        <p>{product.descricao}</p>
-                        <p>{product.tamanho}</p>
-                        <p>{product.marca}</p>
-                        <p>{product.preco}</p>
-                        <a href=''>Acessar</a>
-                    </article>
-                ))}
-                <div className='actions'>
-                    <button>Anterior</button>
-                    <button>Proximo</button>
+            <div className='dashboard'>
+                <div className='bloco' onClick={this.showModal}>
+                    <Modal show={this.state.show} handleClose={this.hideModal} >
+                        <Cadastro />
+                    </Modal>
+                </div>
+                <div className='bloco'>
+
+                </div>
+                <div className='bloco'>
+
                 </div>
             </div>
         );
