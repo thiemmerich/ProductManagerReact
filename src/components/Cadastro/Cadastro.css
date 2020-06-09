@@ -1,9 +1,9 @@
 .cadastro-main {
     background: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+}
+
+.cadastro-main form {
+    border: 1px solid #ccc;
 }
 
 .cadastro-main .container {
@@ -14,7 +14,7 @@
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    flex-direction: column;
+    flex-direction: row;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
@@ -22,24 +22,35 @@
 .cadastro-main .text-field-2 {
     width: 15%;
     padding: 12px 20px;
-    margin: 8px 0;
-    flex-direction: column;
+    flex-direction: row;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-.cadastro-main .column-2-rows input[type=text] {
-    width: 50%;
-}
-
-.cadastro-main .button-div {
+.cadastro-main .column-2-rows {
+    display: flex;
     justify-content: space-between;
 }
 
-.cadastro-main form {
-    border: 1px solid #ccc;
+.cadastro-main .button-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cadastro-main .button-div button {
+    background-color: #4CAF50;
+    color: #fff;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    width: 48%;
+}
+
+.cadastro-main .button-div button:hover {
+    opacity: 0.8;
 }
 
 .cadastro-main label {
     color: #ccc;
+    margin-left: 10px;
 }
