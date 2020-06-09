@@ -3,6 +3,7 @@ import api from '../../services/api';
 import './login.css';
 
 import logo from '../../images/logo.jpeg';
+import { login, getToken } from '../../services/auth';
 
 export default class Login extends Component {
 
@@ -29,6 +30,8 @@ export default class Login extends Component {
                     status: response.data.status,
                     result: response.data.result
                 });
+
+                login(this.state.token, this.state.status);
 
             } catch (err) {
                 if (err.response) {
