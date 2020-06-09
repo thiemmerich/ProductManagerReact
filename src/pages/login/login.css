@@ -5,8 +5,8 @@
     justify-content: center;
     height: 100vh;
   }
-  
-  input[type=text], input[type=password] {
+
+  .login-main-screen input[type=text], input[type=password] {
     width: 400px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -16,7 +16,7 @@
     box-sizing: border-box;
   }
 
-  button {
+  .login-main-screen button {
     background-color: #4CAF50;
     color: #ccc;
     padding: 14px 20px;
@@ -26,22 +26,22 @@
     width: 400px;
   }
 
-  button:hover {
+  .login-main-screen button:hover {
     opacity: 0.8;
   }
 
-  form {
+  .login-main-screen form {
     border: 1px solid #ccc;
   }
 
-  label {
-      color: #ccc;
+  .login-main-screen label {
+    color: #ccc;
   }
-  
-  img.avatar {
+
+  .login-main-screen img.avatar {
     margin-left: 20px;
   }
-  
-  .container {
+
+  .login-main-screen .container {
     padding: 16px;
   }

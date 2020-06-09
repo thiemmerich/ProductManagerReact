@@ -4,6 +4,7 @@ import './styles.css';
 import Header from './components/Header/Header';
 import Main from './pages/main/main';
 import Login from './pages/login/login';
+import Cadastro from './components/Cadastro/Cadastro';
 
 function App() {
   /*return (
@@ -15,7 +16,8 @@ function App() {
 
   return (
     <div className="App">
-      <Login />
+      <Header />
+      <Cadastro />
     </div>
   );
 }

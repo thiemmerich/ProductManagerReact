@@ -1,0 +1,45 @@
+.cadastro-main {
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.cadastro-main .container {
+    padding: 16px;
+}
+
+.cadastro-main .text-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.cadastro-main .text-field-2 {
+    width: 15%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.cadastro-main .column-2-rows input[type=text] {
+    width: 50%;
+}
+
+.cadastro-main .button-div {
+    justify-content: space-between;
+}
+
+.cadastro-main form {
+    border: 1px solid #ccc;
+}
+
+.cadastro-main label {
+    color: #ccc;
+}
