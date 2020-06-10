@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import api from '../../services/api';
 import './login.css';
 
@@ -32,6 +34,8 @@ export default class Login extends Component {
                 });
 
                 login(this.state.token, this.state.status);
+
+                
 
             } catch (err) {
                 if (err.response) {
