@@ -1,13 +1,10 @@
 .cadastro-main {
-    background: #000000;
+    background: rgb(167, 167, 167);
     display: flex;
     flex-direction: column;
-}
-
-.cadastro-main form {
-    border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 
 .cadastro-main .formTitle {
     display: flex;
@@ -43,7 +40,7 @@
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(71, 71, 71);
     box-sizing: border-box;
 }
 
@@ -68,7 +65,7 @@
 }
 
 .cadastro-main label {
-    color: #ccc;
+    color: rgb(71, 71, 71);
     margin-left: 10px;
 }
 

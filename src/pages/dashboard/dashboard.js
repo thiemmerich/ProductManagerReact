@@ -4,6 +4,10 @@ import { logout } from '../../services/auth';
 
 import './dashboard.css';
 
+import estoque from '../../images/opened_box.png';
+import entrada from '../../images/box.png';
+import pedido from '../../images/supermarket.png';
+
 import Cadastro from '../../components/Cadastro/Cadastro';
 import Estoque from '../../components/Estoque/Estoque';
 import Modal from '../../components/Modal/Modal';
@@ -49,19 +53,21 @@ export default class Dashboard extends Component {
                 <div className='dashboard'>
 
                     <div className='bloco'>
-                        <h1>PEDIDO</h1>
+                        <img src={pedido} alt="Avatar" className="avatar" />
+                        <h1>Novo pedido</h1>
                     </div>
 
                     <div className='bloco' onClick={this.showModal}>
-                        <h1>ENTRADA</h1>
+                        <img src={entrada} alt="Avatar" className="avatar" />
+                        <h1>Entrada de produtos</h1>
                         <Modal show={this.state.show} >
                             <Cadastro handleClose={this.hideModal} />
                         </Modal>
                     </div>
 
-                    <div className='bloco' onClick={this.props.history.push("/estoque")}>
-                        <h1>ESTOQUE</h1>
-                        {}
+                    <div className='bloco'>
+                        <img src={estoque} alt="Avatar" className="avatar" />
+                        <h1>Estoque</h1>
                     </div>
                 </div>
             </main>
