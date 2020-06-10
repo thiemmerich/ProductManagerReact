@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+
 import api from '../../services/api';
 import './login.css';
 
 import logo from '../../images/logo.jpeg';
-import { login, getToken } from '../../services/auth';
+import { login } from '../../services/auth';
 
 export default class Login extends Component {
 
@@ -12,6 +13,7 @@ export default class Login extends Component {
         password: "",
         token: "",
         status: "",
+        error: "",
         result: {}
     }
 
@@ -33,6 +35,7 @@ export default class Login extends Component {
 
                 login(this.state.token, this.state.status);
 
+                this.props.history.push("/dashboard");
             } catch (err) {
                 if (err.response) {
                     /*
@@ -40,7 +43,7 @@ export default class Login extends Component {
                      * status code that falls out of the range of 2xx
                      */
                     console.log(err.response.data);
-                    //this.setState({ message: "Ocorreu um erro ao fazer login: " + err.response.data.message });
+                    this.setState({ error: "Ocorreu um erro ao fazer login: " + err.response.data.errorMsg });
                     //this.setState({ success: err.response.data.success });
                 } else if (err.request) {
                     /*
@@ -49,19 +52,17 @@ export default class Login extends Component {
                      * of http.ClientRequest in Node.js
                      */
                     console.log(err.request);
-                    //this.setState({ message: "Erro ao conectar ao servidor: " + err.request });
+                    this.setState({ error: "Erro ao conectar ao servidor: " + err.request });
                 } else {
                     // Something happened in setting up the request and triggered an Error
                     console.log('error', err.message);
-                    //this.setState({ message: "Erro: " + err.message });
+                    this.setState({ error: "Erro: " + err.message });
                 }
             }
         }
     };
 
     render() {
-        const { products } = this.state;
-
         return (
             <div className='login-main-screen'>
                 <form onSubmit={this.handleSignIn}>
@@ -84,6 +85,7 @@ export default class Login extends Component {
                         />
 
                         <button type="submit">Login</button>
+                        {this.state.error && <p>{this.state.error}</p>}
                     </div>
                 </form>
             </div>

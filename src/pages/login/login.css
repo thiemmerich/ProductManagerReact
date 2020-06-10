@@ -14,6 +14,7 @@
     flex-direction: column;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius: 5px;
   }
 
   .login-main-screen button {
@@ -24,6 +25,8 @@
     border: none;
     cursor: pointer;
     width: 400px;
+    border-radius: 5px;
+    font-weight: bold;
   }
 
   .login-main-screen button:hover {
@@ -32,6 +35,7 @@
 
   .login-main-screen form {
     border: 1px solid #ccc;
+    border-radius: 5px;
   }
 
   .login-main-screen label {
@@ -44,4 +48,15 @@
 
   .login-main-screen .container {
     padding: 16px;
+  }
+
+  .login-main-screen p {
+    color: #ff0000;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    background: #ff8585;
   }

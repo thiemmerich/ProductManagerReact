@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 
-import './main.css';
+import './dashboard.css';
 
 import Cadastro from '../../components/Cadastro/Cadastro';
 import Modal from '../../components/Cadastro/Modal';
+import Header from '../../components/Header/Header';
 
-export default class Main extends Component {
+export default class Dashboard extends Component {
 
     state = {
         products: [],
@@ -38,19 +39,22 @@ export default class Main extends Component {
         const { products } = this.state;
 
         return (
-            <div className='dashboard'>
-                <div className='bloco' onClick={this.showModal}>
-                    <Modal show={this.state.show} handleClose={this.hideModal} >
-                        <Cadastro />
-                    </Modal>
-                </div>
-                <div className='bloco'>
+            <main>
+                <Header />
+                <div className='dashboard'>
+                    <div className='bloco'>
 
-                </div>
-                <div className='bloco'>
+                    </div>
+                    <div className='bloco' onClick={this.showModal}>
+                        <Modal show={this.state.show} handleClose={this.hideModal} >
+                            <Cadastro />
+                        </Modal>
+                    </div>
+                    <div className='bloco'>
 
+                    </div>
                 </div>
-            </div>
+            </main>
         );
     }
 }

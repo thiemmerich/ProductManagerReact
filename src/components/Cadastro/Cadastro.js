@@ -31,7 +31,7 @@ export default class Cadastro extends Component {
             preco: this.state.preco
         }
         
-        await api.post('product', produto, { headers: { 'Authorization': `Bearer ${token}` } })
+        await api.post('product', produto)
             .then(() => {
                 console.log(this.state.produto);
             });
