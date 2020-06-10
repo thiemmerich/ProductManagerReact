@@ -5,6 +5,7 @@ import { logout } from '../../services/auth';
 import './dashboard.css';
 
 import Cadastro from '../../components/Cadastro/Cadastro';
+import Estoque from '../../components/Estoque/Estoque';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
 
@@ -58,8 +59,9 @@ export default class Dashboard extends Component {
                         </Modal>
                     </div>
 
-                    <div className='bloco'>
+                    <div className='bloco' onClick={this.props.history.push("/estoque")}>
                         <h1>ESTOQUE</h1>
+                        {}
                     </div>
                 </div>
             </main>

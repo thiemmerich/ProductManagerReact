@@ -6,6 +6,7 @@ import { isAuthenticated } from './services/auth';
 
 import Login from './pages/login/login';
 import Dashboard from './pages/dashboard/dashboard';
+import Estoque from './components/Estoque/Estoque';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => isAuthenticated() ?
@@ -21,6 +22,7 @@ const Routes = () => (
         <Switch>
             <Route exact path="/" component={Login}/>
             <PrivateRoute path="/dashboard" component={Dashboard}/>
+            <PrivateRoute path="/estoque" component={Estoque}/>
             <Route path="*" component={() => <h1>Page not found</h1>} />
         </Switch>
     </BrowserRouter>

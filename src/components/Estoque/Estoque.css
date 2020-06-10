@@ -1,0 +1,47 @@
+.container {
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+}
+
+.relatorio {
+    color: aliceblue;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+}
+table{
+    border-collapse: collapse;
+}
+th,td{
+    padding: 10px;
+    border-bottom: 3px black solid;   
+}
+
+
+tr:nth-child(even){
+    background-color: hotpink;
+}
+tr:nth-child(odd), th{
+    background-color: mediumorchid;
+}
+th{
+    border-top: none;
+}
+
+table:last-child{
+    border-bottom: none;
+}
+table td:last-child, th:last-of-type{
+    border-right: none;
+}
+table td:first-child,th:first-of-type{
+    border-left: none;
+}
+table tr:last-of-type td{
+    border-bottom: none;
+}
+
+
+
