@@ -4,7 +4,7 @@ import api from '../../services/api';
 import './dashboard.css';
 
 import Cadastro from '../../components/Cadastro/Cadastro';
-import Modal from '../../components/Cadastro/Modal';
+import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
 
 export default class Dashboard extends Component {
