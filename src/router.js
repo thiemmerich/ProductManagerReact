@@ -6,7 +6,6 @@ import { isAuthenticated } from './services/auth';
 
 import Login from './pages/login/login';
 import Dashboard from './pages/dashboard/dashboard';
-import Header from './components/Header/Header';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => isAuthenticated() ?
