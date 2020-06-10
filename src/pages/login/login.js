@@ -42,6 +42,7 @@ export default class Login extends Component {
                 login(this.state.token, this.state.status);
 
                 this.props.history.push("/dashboard");
+
             } catch (err) {
                 setTimeout(this.hiddingAlert, 3000);
                 if (err.response) {

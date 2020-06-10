@@ -41,11 +41,11 @@ export default class Cadastro extends Component {
             const response = await api.post('product', produto);
 
             setTimeout(this.hiddingAlert, 3000);
-            this.setState({ showErrorClassName: 'showSucess',error: "Salvo com sucesso!"});
+            this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
 
         } catch (err) {
             setTimeout(this.hiddingAlert, 3000);
-            this.setState({ showErrorClassName: 'showError',error: "ERRO: " + err });
+            this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
         }
     }
 
@@ -57,7 +57,7 @@ export default class Cadastro extends Component {
                 <form>
                     <div className='formTitle'>
                         <h1>Cadastro de produto</h1>
-                        <button>X</button>
+                        <button onClick={this.props.handleClose}>X</button>
                     </div>
                     <div className='container'>
 
