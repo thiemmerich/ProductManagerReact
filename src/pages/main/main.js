@@ -39,13 +39,13 @@ export default class Main extends Component {
 
         return (
             <div className='dashboard'>
+                <div className='bloco'>
+
+                </div>
                 <div className='bloco' onClick={this.showModal}>
                     <Modal show={this.state.show} handleClose={this.hideModal} >
                         <Cadastro />
                     </Modal>
-                </div>
-                <div className='bloco'>
-
                 </div>
                 <div className='bloco'>
 
