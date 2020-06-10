@@ -39,16 +39,19 @@
     border-radius: 5px;
   }
 
-  .login-screen label {
-    color: #ccc;
-  }
-
   .login-screen img.avatar {
     margin-left: 20px;
   }
 
   .login-screen .container {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .login-screen .container label {
+    color: #ccc;
   }
 
   .login-screen p {
