@@ -15,12 +15,18 @@ export default class Cadastro extends Component {
         tipo: "",
         marca: "",
         preco: "",
+        showErrorClassName: 'hideError',
+        error: "ERRO",
         result: {}
+    }
+
+    hiddingAlert = () => {
+        this.setState({ showErrorClassName: "hideError" });
     }
 
     submitCadastro = async e => {
         e.preventDefault();
-        
+
         const token = getToken();
         const produto = {
             nome: this.state.nome,
@@ -30,21 +36,31 @@ export default class Cadastro extends Component {
             marca: this.state.marca,
             preco: this.state.preco
         }
-        
-        await api.post('product', produto)
-            .then(() => {
-                console.log(this.state.produto);
-            });
 
-        //console.log(this.state.produto);
+        try {
+            const response = await api.post('product', produto);
+
+            setTimeout(this.hiddingAlert, 3000);
+            this.setState({ showErrorClassName: 'showSucess',error: "Salvo com sucesso!"});
+
+        } catch (err) {
+            setTimeout(this.hiddingAlert, 3000);
+            this.setState({ showErrorClassName: 'showError',error: "ERRO: " + err });
+        }
     }
 
     render() {
 
         return (
             <main className='cadastro-main'>
+                <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
+                    <div className='formTitle'>
+                        <h1>Cadastro de produto</h1>
+                        <button>X</button>
+                    </div>
                     <div className='container'>
+
                         <label ><b>Produto</b></label>
                         <input
                             className='text-field'
@@ -57,20 +73,18 @@ export default class Cadastro extends Component {
                             placeholder='Descrição'
                             onChange={e => this.setState({ descricao: e.target.value })}
                         />
-                        <div className='colunm-2rows'>
-                            <label ><b>Tamanho</b></label>
-                            <input
-                                className='text-field-2'
-                                placeholder='Tamanho'
-                                onChange={e => this.setState({ tamanho: e.target.value })}
-                            />
-                            <label ><b>Tipo</b></label>
-                            <input
-                                className='text-field-2'
-                                placeholder='Tipo'
-                                onChange={e => this.setState({ tipo: e.target.value })}
-                            />
-                        </div>
+                        <label ><b>Tamanho</b></label>
+                        <input
+                            className='text-field'
+                            placeholder='Tamanho'
+                            onChange={e => this.setState({ tamanho: e.target.value })}
+                        />
+                        <label ><b>Tipo</b></label>
+                        <input
+                            className='text-field'
+                            placeholder='Tipo'
+                            onChange={e => this.setState({ tipo: e.target.value })}
+                        />
                         <label ><b>Marca</b></label>
                         <input
                             className='text-field'
@@ -85,7 +99,6 @@ export default class Cadastro extends Component {
                         />
                         <div className='button-div'>
                             <button onClick={this.submitCadastro}>Salvar</button>
-                            <button>Cancelar</button>
                         </div>
                     </div>
                 </form>
