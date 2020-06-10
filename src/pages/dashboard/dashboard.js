@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
+import { logout } from '../../services/auth';
 
 import './dashboard.css';
 
@@ -35,23 +36,30 @@ export default class Dashboard extends Component {
         this.setState({ products: docs, productInfo });
     };
 
-    render() {
-        const { products } = this.state;
+    onLogoutClick = () => {
+        logout();
+        this.props.history.push("/");
+    }
 
+    render() {
         return (
             <main>
-                <Header />
+                <Header onLogoutClick={this.onLogoutClick} />
                 <div className='dashboard'>
-                    <div className='bloco'>
 
+                    <div className='bloco'>
+                        <h1>PEDIDO</h1>
                     </div>
+
                     <div className='bloco' onClick={this.showModal}>
-                        <Modal show={this.state.show} handleClose={this.hideModal} >
-                            <Cadastro />
+                        <h1>ENTRADA</h1>
+                        <Modal show={this.state.show} >
+                            <Cadastro handleClose={this.hideModal} />
                         </Modal>
                     </div>
-                    <div className='bloco'>
 
+                    <div className='bloco'>
+                        <h1>ESTOQUE</h1>
                     </div>
                 </div>
             </main>
