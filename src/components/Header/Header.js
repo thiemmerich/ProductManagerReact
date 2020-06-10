@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Header.css';
 
-const Header = () => (
-    <header id='main-header'>Product Manager</header>
-);
+import logo from '../../images/logo.jpeg';
+
+const Header = ({ onLogoutClick }) => {
+
+    return (
+        <div className='main-header'>
+            <div >
+                <img src={logo} alt="Avatar" className="avatar" />
+            </div>
+            <button className='logout-button' onClick={onLogoutClick}>Sair</button>
+        </div>
+    );
+}
 
 export default Header;

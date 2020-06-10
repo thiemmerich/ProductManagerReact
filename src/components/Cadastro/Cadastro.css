@@ -1,45 +1,104 @@
 .cadastro-main {
     background: #000000;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    flex-direction: column;
+}
+
+.cadastro-main form {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.cadastro-main .formTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cadastro-main .formTitle h1 {
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+}
+
+.cadastro-main .formTitle button {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 8px;
+
 }
 
 .cadastro-main .container {
     padding: 16px;
 }
 
+.cadastro-main input {
+    border-radius: 5px;
+}
+
 .cadastro-main .text-field {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    flex-direction: column;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
-
-.cadastro-main .text-field-2 {
-    width: 15%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.cadastro-main .column-2-rows input[type=text] {
-    width: 50%;
 }
 
 .cadastro-main .button-div {
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
 }
 
-.cadastro-main form {
-    border: 1px solid #ccc;
+.cadastro-main .button-div button {
+    background-color: #4CAF50;
+    color: #fff;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.cadastro-main .button-div button:hover {
+    opacity: 0.8;
 }
 
 .cadastro-main label {
     color: #ccc;
+    margin-left: 10px;
 }
+
+.cadastro-main p {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    background: #ff8585;
+    position: absolute;
+    
+    top: 10px;
+    transition: 0.5s;
+  }
+
+  .cadastro-main .showError {
+    opacity: 1;
+  }
+
+  .cadastro-main .hideError {
+    opacity: 0;
+  }
+
+  .cadastro-main .showSucess {
+    opacity: 1;
+    color: #007e00;
+    border: 1px solid #007e00;
+    background: #8efd93;
+  }

@@ -1,0 +1,16 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard .bloco {
+    background: rgb(167, 167, 167);
+    width: 33%;
+    height: 500px;
+    margin: 20px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.dashboard .bloco:hover {
+    background: rgb(131, 131, 131);
+}

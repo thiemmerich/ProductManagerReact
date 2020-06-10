@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+
 import api from '../../services/api';
 import './login.css';
 
 import logo from '../../images/logo.jpeg';
+import { login } from '../../services/auth';
 
 export default class Login extends Component {
 
@@ -11,7 +13,13 @@ export default class Login extends Component {
         password: "",
         token: "",
         status: "",
+        error: "",
+        showErrorClassName: 'hideError',
         result: {}
+    }
+
+    hiddingAlert = () => {
+        this.setState({ showErrorClassName: "hideError" });
     }
 
     handleSignIn = async e => {
@@ -19,7 +27,8 @@ export default class Login extends Component {
         const { name, password } = this.state;
 
         if (!name || !password) {
-            this.setState({ error: "Preencha os campos para continuar!" });
+            this.setState({ showErrorClassName: "showError", error: "Preencha os campos para continuar!" });
+            setTimeout(this.hiddingAlert, 3000);
         } else {
             try {
                 const response = await api.post("/auth", { name, password });
@@ -30,15 +39,19 @@ export default class Login extends Component {
                     result: response.data.result
                 });
 
+                login(this.state.token, this.state.status);
+
+                this.props.history.push("/dashboard");
+
             } catch (err) {
+                setTimeout(this.hiddingAlert, 3000);
                 if (err.response) {
                     /*
                      * The request was made and the server responded with a
                      * status code that falls out of the range of 2xx
                      */
                     console.log(err.response.data);
-                    //this.setState({ message: "Ocorreu um erro ao fazer login: " + err.response.data.message });
-                    //this.setState({ success: err.response.data.success });
+                    this.setState({ showErrorClassName: "showError", error: "Ocorreu um erro ao fazer login: " + err.response.data.errorMsg });
                 } else if (err.request) {
                     /*
                      * The request was made but no response was received, `error.request`
@@ -46,21 +59,20 @@ export default class Login extends Component {
                      * of http.ClientRequest in Node.js
                      */
                     console.log(err.request);
-                    //this.setState({ message: "Erro ao conectar ao servidor: " + err.request });
+                    this.setState({ showErrorClassName: "showError", error: "Erro ao conectar ao servidor: " + err.request });
                 } else {
                     // Something happened in setting up the request and triggered an Error
                     console.log('error', err.message);
-                    //this.setState({ message: "Erro: " + err.message });
+                    this.setState({ showErrorClassName: "showError", error: "Erro: " + err.message });
                 }
             }
         }
     };
 
     render() {
-        const { products } = this.state;
-
         return (
-            <div className='login-main-screen'>
+            <div className='login-screen'>
+                <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form onSubmit={this.handleSignIn}>
                     <div >
                         <img src={logo} alt="Avatar" className="avatar" />
@@ -79,7 +91,6 @@ export default class Login extends Component {
                             placeholder="Senha"
                             onChange={e => this.setState({ password: e.target.value })}
                         />
-
                         <button type="submit">Login</button>
                     </div>
                 </form>
