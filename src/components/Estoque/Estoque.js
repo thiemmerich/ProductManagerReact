@@ -102,8 +102,12 @@ export default class Estoque extends Component {
     render() {
 
         return (
-            <div class='container'>
-                <div class='relatorio'>
+            <div className='container'>
+                <div className='formTitle'>
+                    <h1>Estoque</h1>
+                    <button onClick={this.props.handleClose}>X</button>
+                </div>
+                <div className='relatorio'>
                     <table id='table_products'>
                         {Object.keys(ProductTemplate).map(this.generateTableHeader)}
                         {this.state.produtos.map(this.mapProductTableData)}

@@ -19,15 +19,33 @@ export default class Dashboard extends Component {
         products: [],
         productInfo: {},
         page: 1,
-        show: false
+        showEntrada: false,
+        showEstoque: false,
+        showPedido: false
     }
 
-    showModal = () => {
-        this.setState({ show: true });
+    showEntradaModal = () => {
+        this.setState({ showEntrada: true });
     }
 
-    hideModal = () => {
-        this.setState({ show: false });
+    hideEntradaModal = () => {
+        this.setState({ showEntrada: false });
+    }
+
+    showEstoqueModal = () => {
+        this.setState({ showEstoque: true });
+    }
+
+    hideEstoqueModal = () => {
+        this.setState({ showEstoque: false });
+    }
+
+    showPedidoModal = () => {
+        this.setState({ showPedido: true });
+    }
+
+    hidePedidoModal = () => {
+        this.setState({ showPedido: false });
     }
 
     componentDidMount() {
@@ -57,17 +75,20 @@ export default class Dashboard extends Component {
                         <h1>Novo pedido</h1>
                     </div>
 
-                    <div className='bloco' onClick={this.showModal}>
+                    <div className='bloco' onClick={this.showEntradaModal}>
                         <img src={entrada} alt="Avatar" className="avatar" />
                         <h1>Entrada de produtos</h1>
-                        <Modal show={this.state.show} >
-                            <Cadastro handleClose={this.hideModal} />
+                        <Modal show={this.state.showEntrada} >
+                            <Cadastro handleClose={this.hideEntradaModal} />
                         </Modal>
                     </div>
 
-                    <div className='bloco'>
+                    <div className='bloco' onClick={this.showEstoqueModal}>
                         <img src={estoque} alt="Avatar" className="avatar" />
                         <h1>Estoque</h1>
+                        <Modal show={this.state.showEstoque} >
+                            <Estoque handleClose={this.hideEstoqueModal} />
+                        </Modal>
                     </div>
                 </div>
             </main>
