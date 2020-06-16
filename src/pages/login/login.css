@@ -1,5 +1,5 @@
   .login-screen {
-    background: #000000;
+    background: #3f3f3f;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,10 +37,8 @@
   .login-screen form {
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-
-  .login-screen label {
-    color: #ccc;
+    background: #000000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .login-screen img.avatar {
@@ -49,6 +47,13 @@
 
   .login-screen .container {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .login-screen .container label {
+    color: #ccc;
   }
 
   .login-screen p {
