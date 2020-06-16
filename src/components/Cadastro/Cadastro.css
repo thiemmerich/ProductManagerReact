@@ -1,8 +1,8 @@
 .cadastro-main {
     background: rgb(167, 167, 167);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
 }
 
 
@@ -15,20 +15,26 @@
 .cadastro-main .formTitle h1 {
     color: #fff;
     text-align: center;
-    padding: 12px 20px;
+    margin-top: 5px;
 }
 
 .cadastro-main .formTitle button {
-    color: rgb(255, 0, 0);
+    background: rgb(255, 0, 0);
+    color: #fff;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    margin-right: 8px;
-
+    margin-right: 2px;
+    margin-top: 2px;
+    width: 30px;
 }
 
-.cadastro-main .container {
+.cadastro-main .formTitle button:hover {
+    opacity: 0.8;
+}
+
+.cadastro-main .cadastro-container {
     padding: 16px;
 }
 
@@ -80,16 +86,17 @@
     text-align: center;
     background: #ff8585;
     position: absolute;
-    
     top: 10px;
     transition: 0.5s;
   }
 
   .cadastro-main .showError {
+    display: block;
     opacity: 1;
   }
 
   .cadastro-main .hideError {
+    display: none;
     opacity: 0;
   }
 

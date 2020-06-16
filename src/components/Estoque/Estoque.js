@@ -48,6 +48,7 @@ export default class Estoque extends Component {
 
     render() {
         return (
+<<<<<<< HEAD
             <>
                 <Header />
                 <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
@@ -55,6 +56,20 @@ export default class Estoque extends Component {
                     getDataItemsFromState={this.serveState}
                 />
             </>
+=======
+            <div className='container'>
+                <div className='formTitle'>
+                    <h1>Estoque</h1>
+                    <button onClick={this.props.handleClose}>X</button>
+                </div>
+                <div className='relatorio'>
+                    <table id='table_products'>
+                        {Object.keys(ProductTemplate).map(this.generateTableHeader)}
+                        {this.state.produtos.map(this.mapProductTableData)}
+                    </table>
+                </div>
+            </div>
+>>>>>>> e6447aca6efd0ae0d683c64e46c1bed4bf25e2a4
         );
     }
 }

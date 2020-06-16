@@ -27,7 +27,7 @@ export default class Cadastro extends Component {
     submitCadastro = async e => {
         e.preventDefault();
 
-        const token = getToken();
+        //const token = getToken();
         const produto = {
             nome: this.state.nome,
             descricao: this.state.descricao,
@@ -38,7 +38,7 @@ export default class Cadastro extends Component {
         }
 
         try {
-            const response = await api.post('product', produto);
+            await api.post('product', produto);
 
             setTimeout(this.hiddingAlert, 3000);
             this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
@@ -59,7 +59,7 @@ export default class Cadastro extends Component {
                         <h1>Cadastro de produto</h1>
                         <button onClick={this.props.handleClose}>X</button>
                     </div>
-                    <div className='container'>
+                    <div className='cadastro-container'>
 
                         <label ><b>Produto</b></label>
                         <input
