@@ -3,7 +3,8 @@ import api from '../../services/api';
 import './Estoque.css';
 
 import { getToken } from '../../services/auth';
-
+import Relatorio from '../Relatorio/Relatorio';
+import Header from '../Header/Header';
 
 
 
@@ -23,93 +24,37 @@ export default class Estoque extends Component {
 
 
     state = {
-        produtos: [],
+        dataItems: [],
 
     }
 
     componentDidMount() {
-        this.loadRelatorioEstoque();
+        this.loadRelatorioEstoque(1);
     }
 
-    hiddingAlert = () => {
-        this.setState({ showErrorClassName: "hideError" });
-    }
-
-    submitCadastro = async e => {
-        e.preventDefault();
-
-        const token = getToken();
-        const produto = {
-            nome: this.state.nome,
-            descricao: this.state.descricao,
-            tamanho: this.state.tamanho,
-            tipo: this.state.tipo,
-            marca: this.state.marca,
-            preco: this.state.preco
-        }
-
-        try {
-            const response = await api.post('product', produto);
-
-            setTimeout(this.hiddingAlert, 3000);
-            this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
-
-        } catch (err) {
-            setTimeout(this.hiddingAlert, 3000);
-            this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
-        }
-    }
-
-    loadRelatorioEstoque = async () => {
+    loadRelatorioEstoque = async (pageNumber) => {
         const response = await api.get('/product');
-        this.setState({ produtos: response.data.docs });
+        this.setState({ dataItems: response.data.docs });
+        console.log("ESTOQUE: " + this.state.dataItems);
+        return response.data.docs;
     };
 
-
-    generateTableHeader = (value) => {
-        var keyVal = 'th_' + value;
-        return (
-            <th key={keyVal}>
-                {value}
-            </th>
-        )
+    serveState = () => {
+        console.log("Serve: " + this.state.dataItems);
+        return this.state.dataItems;
     }
 
-
-    getTdFromTemplateKey = (templateKey, produto) => {
-        return (
-            <td>{produto.templateKey}</td>
-        )
-    }
-
-
-    mapProductTableData = (produto) => {
-        let templateKeys = Object.keys(ProductTemplate);
-        return (
-            <tr key={'product_' + produto.id} >
-                {
-                    templateKeys.map((elem) => {
-                        return (
-                            <td>{eval("produto." + elem)}</td>
-                        );
-                    })
-                }
-            </tr>
-        )
-    }
 
 
     render() {
-
         return (
-            <div class='container'>
-                <div class='relatorio'>
-                    <table id='table_products'>
-                        {Object.keys(ProductTemplate).map(this.generateTableHeader)}
-                        {this.state.produtos.map(this.mapProductTableData)}
-                    </table>
-                </div>
-            </div>
+            <>
+                <Header />
+                <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
+                    dataTemplate={ProductTemplate}
+                    getDataItemsFromState={this.serveState}
+                />
+            </>
         );
     }
 }
