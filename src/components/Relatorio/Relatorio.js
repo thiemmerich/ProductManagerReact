@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import './Relatorio.css';
 
-import { getToken } from '../../services/auth';
-
 
 
 
