@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import './Estoque.css';
 
-import { getToken } from '../../services/auth';
 import Relatorio from '../Relatorio/Relatorio';
-import Header from '../Header/Header';
-
-
 
 let ProductTemplate = {
     id: 0,
