@@ -49,7 +49,6 @@ export default class Estoque extends Component {
     render() {
         return (
             <>
-                <Header />
                 <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
                     dataTemplate={ProductTemplate}
                     getDataItemsFromState={this.serveState}
