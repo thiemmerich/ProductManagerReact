@@ -5,25 +5,21 @@ import './Estoque.css';
 import Relatorio from '../Relatorio/Relatorio';
 
 let ProductTemplate = {
-    id: 0,
-    nome: '',
-    descricao: '',
+    idProduto: 0,
+    Product_nome: '',
+    Product_marca: '',
     tamanho: '',
-    tipo: '',
-    marca: '',
-    preco: '',
-    criacao: '',
-    atualizacao: ''
+    quantidade: '',
+    createdAt: '',
+    updatedAt: '',
+    
 }
 
 export default class Estoque extends Component {
-
-
     state = {
         dataItems: [],
 
     }
-
     componentDidMount() {
         this.loadRelatorioEstoque(1);
     }
