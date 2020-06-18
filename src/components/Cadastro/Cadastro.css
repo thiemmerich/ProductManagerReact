@@ -5,6 +5,36 @@
     flex-direction: column;
 }
 
+.cadastro-main p {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    background: #ff8585;
+    position: absolute;
+    top: 10px;
+    transition: 0.5s;
+}
+
+.cadastro-main .showError {
+    opacity: 1;
+}
+
+.cadastro-main .hideError {
+    opacity: 0;
+}
+
+.cadastro-main .showSucess {
+    opacity: 1;
+    color: #007e00;
+    border: 1px solid #007e00;
+    background: #8efd93;
+}
 
 .cadastro-main .formTitle {
     display: flex;
@@ -19,35 +49,64 @@
 }
 
 .cadastro-main .formTitle button {
-    background: rgb(255, 0, 0);
+    background: rgb(167, 167, 167);
     color: #fff;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50%;
+    border: 0;
     margin-right: 2px;
     margin-top: 2px;
     width: 30px;
+    height: 30px;
+    transition: 0.2s;
+    right: 0px;
 }
 
 .cadastro-main .formTitle button:hover {
-    opacity: 0.8;
+    background: rgb(134, 134, 134);
+    color: rgb(78, 78, 78);
 }
 
 .cadastro-main .cadastro-container {
     padding: 16px;
 }
 
-.cadastro-main input {
+.cadastro-main .cadastro-container input {
     border-radius: 5px;
 }
 
-.cadastro-main .text-field {
+.cadastro-main .cadastro-container textarea {
+    border-radius: 5px;
+    max-width: 600px;
+    min-width: 100%;
+    max-height: 100px;
+    min-height: 100px;
+}
+
+.cadastro-main .cadastro-container .text-field {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid rgb(71, 71, 71);
     box-sizing: border-box;
+}
+
+.cadastro-main .cadastro-container .input-2rows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cadastro-main .cadastro-container .input-2rows div {
+    width: 49%;
+}
+
+.cadastro-main .cadastro-container .input-2rows label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }
 
 .cadastro-main .button-div {
@@ -64,45 +123,14 @@
     width: 50%;
     margin-top: 5px;
     border-radius: 5px;
+    transition: 0.2s;
 }
 
 .cadastro-main .button-div button:hover {
-    opacity: 0.8;
+    background-color: #275a29;
 }
 
 .cadastro-main label {
     color: rgb(71, 71, 71);
     margin-left: 10px;
 }
-
-.cadastro-main p {
-    color: #ff0000;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-    background: #ff8585;
-    position: absolute;
-    top: 10px;
-    transition: 0.5s;
-  }
-
-  .cadastro-main .showError {
-    display: block;
-    opacity: 1;
-  }
-
-  .cadastro-main .hideError {
-    display: none;
-    opacity: 0;
-  }
-
-  .cadastro-main .showSucess {
-    opacity: 1;
-    color: #007e00;
-    border: 1px solid #007e00;
-    background: #8efd93;
-  }
