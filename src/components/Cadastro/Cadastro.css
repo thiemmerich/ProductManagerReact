@@ -36,39 +36,6 @@
     background: #8efd93;
 }
 
-.cadastro-main .formTitle {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.cadastro-main .formTitle h1 {
-    color: #fff;
-    text-align: center;
-    margin-top: 5px;
-}
-
-.cadastro-main .formTitle button {
-    background: rgb(167, 167, 167);
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 50%;
-    border: 0;
-    margin-right: 2px;
-    margin-top: 2px;
-    width: 30px;
-    height: 30px;
-    transition: 0.2s;
-    right: 0px;
-}
-
-.cadastro-main .formTitle button:hover {
-    background: rgb(134, 134, 134);
-    color: rgb(78, 78, 78);
-}
-
 .cadastro-main .cadastro-container {
     padding: 16px;
 }

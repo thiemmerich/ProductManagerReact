@@ -62,8 +62,8 @@ export default class Relatorio extends Component {
 
     render() {
         return (
-            <div class='container'>
-                <div class='relatorio'>
+            <div className='container'>
+                <div className='relatorio'>
                     <table id='table_relatorio'>
                         {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
                         {this.state.dataItems.map(this.mapTableData)}
