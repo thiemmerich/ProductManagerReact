@@ -55,9 +55,6 @@ export default class Relatorio extends Component {
         )
     }
 
-
-    
-
     flatten = (jsonObject, hierarchy=[] ) => {
         return Object.keys(jsonObject).reduce(
             (resultingObject, property) => {
@@ -68,6 +65,7 @@ export default class Relatorio extends Component {
                 if(typeof currentCheckingValue !== 'object'){
                     //gera uma string com os valores do array separados pelo caracter _
                     //Ex:property='bbq', hierarchy=['as','aq'] -> 'as_aq_bbq' 
+                    
                     let currentHierarchicalName= newHierarchy.join("_");    
                     resultingObject[currentHierarchicalName] = jsonObject[property];
                     return resultingObject;
