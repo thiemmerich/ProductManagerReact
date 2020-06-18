@@ -33,7 +33,7 @@ export default class Estoque extends Component {
     }
 
     loadRelatorioEstoque = async (pageNumber) => {
-        const response = await api.get('/product');
+        const response = await api.get('/estoque');
         this.setState({ dataItems: response.data.docs });
         console.log("ESTOQUE: " + this.state.dataItems);
         return response.data.docs;
@@ -49,7 +49,6 @@ export default class Estoque extends Component {
     render() {
         return (
             <>
-                <Header />
                 <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
                     dataTemplate={ProductTemplate}
                     getDataItemsFromState={this.serveState}
