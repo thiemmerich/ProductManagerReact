@@ -2,38 +2,30 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import './Estoque.css';
 
-import { getToken } from '../../services/auth';
 import Relatorio from '../Relatorio/Relatorio';
-import Header from '../Header/Header';
-
-
 
 let ProductTemplate = {
-    id: 0,
-    nome: '',
-    descricao: '',
+    idProduto: 0,
+    Product_nome: '',
+    Product_marca: '',
     tamanho: '',
-    tipo: '',
-    marca: '',
-    preco: '',
-    criacao: '',
-    atualizacao: ''
+    quantidade: '',
+    createdAt: '',
+    updatedAt: '',
+    
 }
 
 export default class Estoque extends Component {
-
-
     state = {
         dataItems: [],
 
     }
-
     componentDidMount() {
         this.loadRelatorioEstoque(1);
     }
 
     loadRelatorioEstoque = async (pageNumber) => {
-        const response = await api.get('/product');
+        const response = await api.get('/estoque');
         this.setState({ dataItems: response.data.docs });
         console.log("ESTOQUE: " + this.state.dataItems);
         return response.data.docs;
@@ -49,7 +41,6 @@ export default class Estoque extends Component {
     render() {
         return (
             <>
-                <Header />
                 <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
                     dataTemplate={ProductTemplate}
                     getDataItemsFromState={this.serveState}
