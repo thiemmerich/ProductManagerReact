@@ -1,19 +1,13 @@
 // @ts-nocheck
 import React, { Component } from 'react';
 import api from '../../services/api';
-import './Cadastro.css';
+import './Entrada.css';
 import CurrencyInput from 'react-currency-input';
 
-export default class Cadastro extends Component {
+export default class Entrada extends Component {
 
     state = {
         showHideClassName: "",
-        nome: "",
-        descricao: "",
-        tamanho: "",
-        tipo: "",
-        marca: "",
-        preco: 0.00,
         showErrorClassName: 'hideError',
         error: "ERRO",
         result: {},
@@ -29,16 +23,22 @@ export default class Cadastro extends Component {
         this.setState({ preco: floatvalue });
     }
 
+    loadProductsFromApi = async (likeName) => {
+        const productsFromApi = await api.get('product/' + likeName);
+
+        this.setState({
+            products: productsFromApi.data
+        });
+
+        console.log(this.state.products);
+
+        this.showDropDown();
+    }
+
     submitCadastro = async e => {
-        e.preventDefault();
+        /*e.preventDefault();
 
         const produto = {
-            nome: this.state.nome,
-            descricao: this.state.descricao,
-            tamanho: this.state.tamanho,
-            tipo: this.state.tipo,
-            marca: this.state.marca,
-            preco: this.state.preco
         }
 
         const { nome, descricao, tamanho, tipo, marca, preco } = this.state;
@@ -57,42 +57,47 @@ export default class Cadastro extends Component {
                 setTimeout(this.hiddingAlert, 3000);
                 this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
             }
-        }
+        }*/
+    }
+
+    showDropDown = () => {
+        document.getElementById("myDropdown").classList.toggle("show");
     }
 
     render() {
         return (
-            <main className='cadastro-main'>
+            <main className='entrada-main'>
                 <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
-                    
-                    <div className='cadastro-container'>
+
+                    <div className='entrada-container'>
                         <label ><b>Nome do produto</b></label>
                         <input
-                            className='text-field'
+                            className='text-field-drop'
                             placeholder='Nome do produto'
-                            onChange={e => this.setState({ nome: e.target.value })}
+                            onChange={e => this.loadProductsFromApi(e.target.value)}
                         />
+                        <div id="myDropdown" class="dropdown-content">
+                            {this.state.products.map(
+                                product => (
+                                    <a key={product.id}>{product.nome}</a>
+                                )
+                            )}
+                        </div>
+
                         <label ><b>Descrição</b></label>
-                        <textarea
-                            className='text-field'
-                            placeholder='Descrição'
-                            rows="4"
-                            cols="50"
-                            onChange={e => this.setState({ descricao: e.target.value })}
-                        />
+                        <label>
+                            {this.state.products.descricao}
+                        </label>
+
                         <label ><b>Tipo</b></label>
-                        <input
-                            className='text-field'
-                            placeholder='Tipo'
-                            onChange={e => this.setState({ tipo: e.target.value })}
-                        />
+                        <label>
+                            {this.state.products.tipo}
+                        </label>
                         <label ><b>Marca</b></label>
-                        <input
-                            className='text-field'
-                            placeholder='Marca'
-                            onChange={e => this.setState({ marca: e.target.value })}
-                        />
+                        <label>
+                            {this.state.products.marca}
+                        </label>
                         <div className='input-2rows'>
                             <div>
                                 <label ><b>Tamanho</b></label>
@@ -104,14 +109,9 @@ export default class Cadastro extends Component {
                             </div>
                             <div>
                                 <label ><b>Valor</b></label>
-                                <CurrencyInput
-                                    className='text-field'
-                                    decimalSeparator=","
-                                    thousandSeparator="."
-                                    prefix="R$"
-                                    value={this.state.preco}
-                                    onChangeEvent={this.handleChange}
-                                />
+                                <label>
+                                    {this.state.valor}
+                                </label>
                             </div>
                         </div>
                         <div className='button-div'>
