@@ -1,9 +1,3 @@
-.container {
-    display: flex;   
-    justify-content: center;
-    align-items: center;
-}
-
 .msg_erro {
     color: black;
 }
@@ -11,41 +5,107 @@
 .relatorio {
     color: aliceblue;
     display: flex;
-
+    text-shadow: 1px 1px 2px #000000;
     flex-direction: column;
-    justify-content: center;
+    padding: 5px;
+    height: 500px;
+    min-height: 500px;
+    margin: 0px;
+    justify-content: space-between;
+    padding-bottom: 0px;;
 }
-table{
+
+table {
     border-collapse: collapse;
+    justify-self: flex-start;
+    margin-bottom: auto;
+    margin-top:0px; 
 }
-th,td{
+
+th,td {
     padding: 10px;
-    border-bottom: 3px black solid;   
+    border: none; 
 }
 
 
-tr:nth-child(even){
-    background-color: hotpink;
+tr:nth-child(even) {
+    background-color: rgb(180, 179, 179);
 }
-tr:nth-child(odd), th{
-    background-color: mediumorchid;
+
+tr:nth-child(odd),
+th {
+    background-color: gray;
 }
-th{
+
+th {
     border-top: none;
+    background-color: rgb(90, 89, 89);
 }
 
-table:last-child{
+table:last-child {
     border-bottom: none;
 }
-table td:last-child, th:last-of-type{
+
+table td:last-child,
+th:last-of-type {
     border-right: none;
 }
-table td:first-child,th:first-of-type{
+
+table td:first-child,
+th:first-of-type {
     border-left: none;
 }
-table tr:last-of-type td{
+
+table tr:last-of-type td {
     border-bottom: none;
 }
 
 
+.pageButtons {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    padding-top: 0px;
+    justify-self: flex-end;
+    margin-top: auto;  
+}
+
+.button_pageNumber {
+    display: inline-block;
+    padding: 0.8em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color:transparent;
+    text-align: center;
+    transition: all 0.2s;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.button_pageNumber:hover:enabled {
+    background-color: slategrey;
+}
+
+@media all and (max-width:30em) {
+    .button_pageNumber {
+        display: block;
+        margin: 0.2em auto;
+    }
+}
+
+.pageButtons #button_next,#button_previous {
+    
+}
+
+#button_next:hover:enabled,#button_previous:hover:enabled {
+    background-color: slategrey;
+}
+.numberButtons {
+    display: flex;
+    align-self: center;
+}
 

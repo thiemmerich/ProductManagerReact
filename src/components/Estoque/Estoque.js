@@ -15,7 +15,7 @@ let ProductTemplate = {
 }
 
 export default class Estoque extends Component {
-    recordsPerPage = 8;
+    recordsPerPage = 7;
 
     state = {
         dataItems: [],
