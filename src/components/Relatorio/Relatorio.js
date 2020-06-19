@@ -106,28 +106,28 @@ export default class Relatorio extends Component {
 
 
     conteudoRelatorio = () => {
-    if (this.state.error) {
-        return <div className='msg_erro'><b> ERRO: {this.state.error}</b></div>
-    }
-    return (
-        <>
-        <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
-        <table id='table_relatorio'>
-            {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
-            {this.state.dataItems.map(this.mapTableData)}
-        </table>
-        </>
+        if (this.state.error) {
+            return <div className='msg_erro'><b> ERRO: {this.state.error}</b></div>
+        }
+        return (
+            <>
+                <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
+                <table id='table_relatorio'>
+                    {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
+                    {this.state.dataItems.map(this.mapTableData)}
+                </table>
+            </>
         )
     }
 
 
-render() {
-    return (
-        <div className='container'>
-            <div className='relatorio'>
-                {this.conteudoRelatorio()}
+    render() {
+        return (
+            <div className='container'>
+                <div className='relatorio'>
+                    {this.conteudoRelatorio()}
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 }
