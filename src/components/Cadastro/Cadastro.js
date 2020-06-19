@@ -16,7 +16,23 @@ export default class Cadastro extends Component {
         preco: 0.00,
         showErrorClassName: 'hideError',
         error: "ERRO",
-        result: {}
+        result: {},
+        currentPage: 1,
+        products: []
+    }
+
+    componentDidMount = () => {
+        this.loadProductsFromApi(1);
+    }
+
+    loadProductsFromApi = async (page) => {
+        const productsFromApi = await api.get('product/10/page/' + page);
+        
+        this.setState({
+            products: productsFromApi
+        });
+
+        console.log(this.state.products);
     }
 
     hiddingAlert = () => {
