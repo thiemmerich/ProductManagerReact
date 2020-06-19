@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.msg_erro {
+    color: black;
+}
+
 .relatorio {
     color: aliceblue;
     display: flex;
