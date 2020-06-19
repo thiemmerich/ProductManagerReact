@@ -1,8 +1,7 @@
 .cadastro-main {
-    background: rgb(167, 167, 167);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
+    background: transparent;
 }
 
 .cadastro-main p {

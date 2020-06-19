@@ -65,7 +65,6 @@ export default class Cadastro extends Component {
                 <form>
                     
                     <div className='cadastro-container'>
-
                         <label ><b>Nome do produto</b></label>
                         <input
                             className='text-field'
