@@ -27,14 +27,19 @@ export default class Relatorio extends Component {
 
     componentDidMount() {
         //console.log(this.props.generateTableDataFunction);
-        let generatedDataPromise = this.props.generateTableDataFunction(1);
+        this.loadData(1);
+    }
+
+    loadData = (page) => {
+        let generatedDataPromise = this.props.generateTableDataFunction(page);
         console.log("Gen: " + generatedDataPromise);
         generatedDataPromise.then(result => {
             this.setState(
                 {
                     dataItems: result.docs,
                     totalPages: result.pages,
-                    totalRecords: result.total
+                    totalRecords: result.total,
+                    currentPage: page,
                 }
             )
         }).catch((err) => {
@@ -43,6 +48,7 @@ export default class Relatorio extends Component {
             })
         });
     }
+
 
     hiddingAlert = () => {
         this.setState({ showErrorClassName: "hideError" });
@@ -105,10 +111,15 @@ export default class Relatorio extends Component {
     }
 
 
+
+
     conteudoRelatorio = () => {
         if (this.state.error) {
             return <div className='msg_erro'><b> ERRO: {this.state.error}</b></div>
         }
+        let int_currentPage = parseInt(this.state.currentPage);
+        let int_totalPages = parseInt(this.state.totalPages);
+        console.log('current: ' + int_currentPage + " | total: " + int_totalPages);
         return (
             <>
                 <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
@@ -116,16 +127,33 @@ export default class Relatorio extends Component {
                     {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
                     {this.state.dataItems.map(this.mapTableData)}
                 </table>
-                {
-                    //Array iniciando em 1 até o numero total de paginas
-                    [...Array(this.state.totalPages).keys()].map( i => i+1).reduce(
-                        (accumulator, curValue) => {
-                            console.log(curValue);
-                            return (
-                                accumulator.concat(<button>{curValue}</button>)
-                            )
-                        }, [])
-                }
+                <div className='pageButtons'>
+                    <button className='button_pageNumber' id='button_previous'
+                        onClick={() => this.loadData(int_currentPage - 1)}
+                        disabled={int_currentPage <= 1}>
+                        &lt;&lt;</button>
+                    <div className='numberButtons'>
+                        {
+                            //Array iniciando em 1 até o numero total de paginas
+                            [...Array(this.state.totalPages).keys()].map(i => i + 1).reduce(
+                                (accumulator, curValue) => {
+                                    return (
+                                        accumulator.concat(
+                                            <button className='button_pageNumber'
+                                                onClick={(e) => this.loadData(curValue)
+                                                }>
+                                                {curValue}
+                                            </button>
+                                        )
+                                    )
+                                }, [])
+                        }
+                    </div>
+                    <button className='button_pageNumber' id='button_next'
+                        onClick={() => this.loadData(int_currentPage + 1)}
+                        disabled={int_currentPage >= int_totalPages}>
+                    &gt;&gt;</button>
+                </div>
             </>
         )
     }
@@ -133,11 +161,11 @@ export default class Relatorio extends Component {
 
     render() {
         return (
-            <div className='container'>
-                <div className='relatorio'>
-                    {this.conteudoRelatorio()}
-                </div>
+
+            <div className='relatorio'>
+                {this.conteudoRelatorio()}
             </div>
+
         );
     }
 }
