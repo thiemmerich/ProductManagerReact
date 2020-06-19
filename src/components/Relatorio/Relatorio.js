@@ -106,28 +106,38 @@ export default class Relatorio extends Component {
 
 
     conteudoRelatorio = () => {
-    if (this.state.error) {
-        return <div className='msg_erro'><b> ERRO: {this.state.error}</b></div>
-    }
-    return (
-        <>
-        <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
-        <table id='table_relatorio'>
-            {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
-            {this.state.dataItems.map(this.mapTableData)}
-        </table>
-        </>
+        if (this.state.error) {
+            return <div className='msg_erro'><b> ERRO: {this.state.error}</b></div>
+        }
+        return (
+            <>
+                <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
+                <table id='table_relatorio'>
+                    {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
+                    {this.state.dataItems.map(this.mapTableData)}
+                </table>
+                {
+                    //Array iniciando em 1 até o numero total de paginas
+                    [...Array(this.state.totalPages).keys()].map( i => i+1).reduce(
+                        (accumulator, curValue) => {
+                            console.log(curValue);
+                            return (
+                                accumulator.concat(<button>{curValue}</button>)
+                            )
+                        }, [])
+                }
+            </>
         )
     }
 
 
-render() {
-    return (
-        <div className='container'>
-            <div className='relatorio'>
-                {this.conteudoRelatorio()}
+    render() {
+        return (
+            <div className='container'>
+                <div className='relatorio'>
+                    {this.conteudoRelatorio()}
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 }
