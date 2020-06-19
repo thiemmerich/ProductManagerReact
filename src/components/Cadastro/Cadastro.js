@@ -63,12 +63,8 @@ export default class Cadastro extends Component {
             <main className='cadastro-main'>
                 <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
-                    <div className='formTitle'>
-                        <h1>Cadastro de produto</h1>
-                        <button onClick={this.props.handleClose}>X</button>
-                    </div>
+                    
                     <div className='cadastro-container'>
-
                         <label ><b>Nome do produto</b></label>
                         <input
                             className='text-field'
@@ -122,7 +118,6 @@ export default class Cadastro extends Component {
                     </div>
                 </form>
             </main >
-
         );
     }
 }

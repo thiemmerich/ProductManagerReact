@@ -19,33 +19,34 @@ export default class Dashboard extends Component {
         products: [],
         productInfo: {},
         page: 1,
-        showEntrada: false,
-        showEstoque: false,
-        showPedido: false
+        showModal: 'modal display-none',
+        modalContent: '',
+        titleName: ''
     }
 
-    showEntradaModal = () => {
-        this.setState({ showEntrada: true });
+    showModal = (modalContent, modalName) => {
+        this.setState({
+            showModal: 'modal display-block',
+            modalContent: modalContent,
+            titleName: modalName
+        });
     }
 
-    hideEntradaModal = () => {
-        this.setState({ showEntrada: false });
+    ModalContent = () => {
+        if (this.state.modalContent === 'saida') {
+            return <Cadastro />
+        }
+        if (this.state.modalContent === 'entrada') {
+            return <Cadastro />
+        }
+        if (this.state.modalContent === 'estoque') {
+            return <Estoque />
+        }
     }
 
-    showEstoqueModal = () => {
-        this.setState({ showEstoque: true });
-    }
-
-    hideEstoqueModal = () => {
-        this.setState({ showEstoque: false });
-    }
-
-    showPedidoModal = () => {
-        this.setState({ showPedido: true });
-    }
-
-    hidePedidoModal = () => {
-        this.setState({ showPedido: false });
+    hideModal = () => {
+        this.setState({ showModal: 'modal display-none' });
+        console.log('Hiding Entrada Modal');
     }
 
     componentDidMount() {
@@ -75,23 +76,33 @@ export default class Dashboard extends Component {
                         <h1>Novo pedido</h1>
                     </div>
 
-                    <div className='bloco' onClick={this.showEntradaModal}>
+                    <div className='bloco' onClick={() => this.showModal('entrada', 'Cadastro de produtos')}>
                         <img src={entrada} alt="Avatar" className="avatar" />
                         <h1>Entrada de produtos</h1>
-                        <Modal show={this.state.showEntrada} >
-                            <Cadastro handleClose={this.hideEntradaModal} />
-                        </Modal>
+
                     </div>
 
-                    <div className='bloco' onClick={this.showEstoqueModal}>
+                    <div className='bloco' onClick={() => this.showModal('estoque', 'Estoque')}>
                         <img src={estoque} alt="Avatar" className="avatar" />
                         <h1>Estoque</h1>
-                        <Modal show={this.state.showEstoque} >
-                            <Estoque handleClose={this.hideEstoqueModal} />
-                        </Modal>
                     </div>
+
+                    <Modal
+                        show={this.state.showModal}
+                        titleName={this.state.titleName}
+                        handleClose={this.hideModal}
+                    >
+                        {this.ModalContent()}
+
+                    </Modal>
                 </div>
             </main>
         );
     }
 }
+
+/*
+    {this.state.modalContent === 'saida' && <Cadastro />}
+                        {this.state.modalContent === 'entrada' && <Cadastro />}
+                        {this.state.modalContent === 'estoque' && <Estoque />}
+*/
