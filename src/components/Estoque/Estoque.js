@@ -12,10 +12,11 @@ let ProductTemplate = {
     quantidade: '',
     createdAt: '',
     updatedAt: '',
-    
 }
 
 export default class Estoque extends Component {
+    recordsPerPage = 8;
+
     state = {
         dataItems: [],
 
@@ -25,10 +26,11 @@ export default class Estoque extends Component {
     }
 
     loadRelatorioEstoque = async (pageNumber) => {
-        const response = await api.get('/estoque');
+        console.log('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);
+        const response = await api.get('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);
         this.setState({ dataItems: response.data.docs });
-        console.log("ESTOQUE: " + this.state.dataItems);
-        return response.data.docs;
+        console.log(response);
+        return response.data;
     };
 
     serveState = () => {
@@ -43,7 +45,6 @@ export default class Estoque extends Component {
             <>
                 <Relatorio generateTableDataFunction={this.loadRelatorioEstoque}
                     dataTemplate={ProductTemplate}
-                    getDataItemsFromState={this.serveState}
                 />
             </>
         );
