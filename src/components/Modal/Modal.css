@@ -1,27 +1,61 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-  }
-  
-  .modal-main {
-    position:fixed;
-    background: white;
-    height: auto;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .display-block {
-    display: block;
-  }
-  
-  .display-none {
-    display: none;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 20px;
+  transform: translate(-50%);
+  background: rgb(167, 167, 167);
+  border-radius: 5px;
+}
+
+.modal-main {
+  position: fixed;
+  background: rgb(167, 167, 167);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: auto;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal .formTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal .formTitle h1 {
+  color: #fff;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.modal .formTitle button {
+  background: rgb(167, 167, 167);
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0;
+  margin-right: 2px;
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  transition: 0.2s;
+  right: 0px;
+}
+
+.modal .formTitle button:hover {
+  background: rgb(134, 134, 134);
+  color: rgb(78, 78, 78);
+}

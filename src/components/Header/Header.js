@@ -8,7 +8,7 @@ const Header = ({ onLogoutClick }) => {
     return (
         <div className='main-header'>
             <div >
-                <img src={logo} alt="Avatar" className="avatar" />
+                <img src={logo} alt="Logo" className="logo" />
             </div>
             <button className='logout-button' onClick={onLogoutClick}>Sair</button>
         </div>
