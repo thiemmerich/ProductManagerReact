@@ -3,20 +3,18 @@
   top: 0;
   left: 0;
   width: 50%;
-  height: 50%;
+  height: auto;
   left: 50%;
-  top: 20px;
+  top: 10%;
   transform: translate(-50%);
   background: rgb(167, 167, 167);
   border-radius: 5px;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
 .modal-main {
-  position: fixed;
-  background: rgb(167, 167, 167);
   border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: auto;
+  height: 100%;
 }
 
 .display-block {
@@ -34,9 +32,11 @@
 }
 
 .modal .formTitle h1 {
-  color: #fff;
+  width: 90%;
   text-align: center;
+  color: rgb(71, 71, 71);
   margin-top: 5px;
+  margin-left: 10px;
 }
 
 .modal .formTitle button {
@@ -47,7 +47,7 @@
   cursor: pointer;
   border-radius: 50%;
   border: 0;
-  margin-right: 2px;
+  margin-right: 5px;
   margin-top: 5px;
   width: 30px;
   height: 30px;
