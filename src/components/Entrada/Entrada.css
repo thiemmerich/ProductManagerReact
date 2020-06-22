@@ -70,8 +70,16 @@
     justify-content: space-between;
 }
 
+.entrada-main .entrada-container .input-2rows .input-codigo {
+    width: 19%;
+}
+
+.entrada-main .entrada-container .input-2rows .input-nome {
+    width: 80%;
+}
+
 .entrada-main .entrada-container .input-2rows div {
-    width: 49%;
+    width: 49.5%;
 }
 
 .entrada-main .entrada-container .input-2rows label {

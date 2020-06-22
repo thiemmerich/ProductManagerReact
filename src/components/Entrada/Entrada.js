@@ -29,7 +29,19 @@ export default class Entrada extends Component {
     }
 
     loadProductsFromApi = async (likeName) => {
-        const productsFromApi = await api.get('product/' + likeName);
+        const productsFromApi = await api.get(`product/${likeName}`);
+
+        this.setState({
+            products: productsFromApi.data
+        });
+
+        console.log(this.state.products);
+
+        this.showDropDown();
+    }
+
+    loadProductsFromApiByCodigo = async (codigo) => {
+        const productsFromApi = await api.get(`product/cod/${codigo}`);
 
         this.setState({
             products: productsFromApi.data
@@ -57,7 +69,6 @@ export default class Entrada extends Component {
         }
 
         const { nome } = this.state.product;
-       
 
         if (!nome || !this.state.tamanho || !this.state.quantidade) {
             setTimeout(this.hiddingAlert, 3000);
@@ -78,8 +89,7 @@ export default class Entrada extends Component {
 
                 console.log(sendMovimentacao);
                 sendMovimentacao();
-                //await api.post('product', produto);
-                //alert(produto.preco);
+
                 setTimeout(this.hiddingAlert, 3000);
                 this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
 
@@ -104,24 +114,38 @@ export default class Entrada extends Component {
                 <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
                     <div className='entrada-container'>
-                        <label ><b>Nome do produto</b></label>
-                        <input
-                            className='text-field-drop'
-                            placeholder='Nome do produto'
-                            value={this.state.product.nome}
-                            onChange={e => this.loadProductsFromApi(e.target.value)}
-                        />
-                        <div id="myDropdown" class="dropdown-content">
-                            {this.state.products.map(
-                                product => (
-                                    <a
-                                        onClick={e => this.saveSelectedProduct(product)}
-                                        key={product.id}
-                                    >
-                                        {product.nome}
-                                    </a>
-                                )
-                            )}
+                        <div className='input-2rows'>
+                            <div className='input-codigo'>
+                                <label ><b>Codigo</b></label>
+                                <input
+                                    className='text-field'
+                                    placeholder='Codigo'
+                                    type="text"
+                                    value={this.state.product.codigo}
+                                    onChange={e => this.loadProductsFromApiByCodigo(e.target.value.replace(/\D/, ''))}
+                                />
+                            </div>
+                            <div className='input-nome'>
+                                <label ><b>Nome do produto</b></label>
+                                <input
+                                    className='text-field-drop'
+                                    placeholder='Nome do produto'
+                                    value={this.state.product.nome}
+                                    onChange={e => this.loadProductsFromApi(e.target.value)}
+                                />
+                                <div id="myDropdown" class="dropdown-content">
+                                    {this.state.products.map(
+                                        product => (
+                                            <a
+                                                onClick={e => this.saveSelectedProduct(product)}
+                                                key={product.id}
+                                            >
+                                                {product.nome}
+                                            </a>
+                                        )
+                                    )}
+                                </div>
+                            </div>
                         </div>
 
                         <label ><b>Descrição</b></label>
@@ -172,7 +196,8 @@ export default class Entrada extends Component {
                                 <input
                                     className='text-field'
                                     placeholder='Quantidade'
-                                    onChange={e => this.setState({ quantidade: e.target.value })}
+                                    value={this.state.quantidade}
+                                    onChange={e => this.setState({ quantidade: e.target.value.replace(/\D/, '') })}
                                 />
                             </div>
                         </div>

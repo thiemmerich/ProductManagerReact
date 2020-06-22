@@ -65,8 +65,16 @@
     justify-content: space-between;
 }
 
+.cadastro-main .cadastro-container .input-2rows .input-codigo {
+    width: 19%;
+}
+
+.cadastro-main .cadastro-container .input-2rows .input-nome {
+    width: 80%;
+}
+
 .cadastro-main .cadastro-container .input-2rows div {
-    width: 49%;
+    width: 49.5%;
 }
 
 .cadastro-main .cadastro-container .input-2rows label {
