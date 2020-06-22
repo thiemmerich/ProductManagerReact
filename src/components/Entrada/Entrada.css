@@ -1,6 +1,6 @@
 .entrada-main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background: transparent;
 }
 
@@ -43,20 +43,25 @@
     border-radius: 5px;
 }
 
-.entrada-main .entrada-container textarea {
-    border-radius: 5px;
-    max-width: 600px;
-    min-width: 100%;
-    max-height: 100px;
-    min-height: 100px;
-}
-
 .entrada-main .entrada-container .text-field {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid rgb(71, 71, 71);
     box-sizing: border-box;
+}
+
+.entrada-main .entrada-container .fixedValue {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    background: #ddd;
+    cursor: default;
 }
 
 .entrada-main .entrada-container .input-2rows {
@@ -99,6 +104,7 @@
 .entrada-main label {
     color: rgb(71, 71, 71);
     margin-left: 10px;
+
 }
 
 .entrada-main .entrada-container .text-field-drop {
@@ -123,10 +129,11 @@
 
 .entrada-main .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 8px 12px;
     text-decoration: none;
     display: block;
     background: #fff;
+    cursor: pointer;
 }
 
 .entrada-main .dropdown a:hover {
