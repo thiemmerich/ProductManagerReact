@@ -76,9 +76,14 @@ export default class Dashboard extends Component {
                 <Header onLogoutClick={this.onLogoutClick} />
                 <div className='dashboard'>
 
-                    <div className='bloco'onClick={() => this.showModal('cadastro', 'Cadastro de produto')}>
+                    <div className='bloco' >
                         <img src={pedido} alt="Avatar" className="avatar" />
                         <h1>Novo pedido</h1>
+                    </div>
+
+                    <div className='bloco' onClick={() => this.showModal('cadastro', 'Cadastro de produto')}>
+                        <img src={entrada} alt="Avatar" className="avatar" />
+                        <h1>Cadastro de produtos</h1>
                     </div>
 
                     <div className='bloco' onClick={() => this.showModal('entrada', 'Entrada de produto')}>

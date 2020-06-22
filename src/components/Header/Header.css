@@ -19,9 +19,9 @@
     border-radius: 2px;
 }
 
-.logout-button {
+.main-header .logout-button {
     margin-right: 20px;
-    background-color: rgb(167, 167, 167);;
+    background-color: rgb(167, 167, 167);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -31,6 +31,19 @@
     width: 80px;
 }
 
-.logout-button:hover {
+.main-header .logout-button:hover {
     opacity: 0.8;
-  }
+}
+
+.main-header .div_button {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-header .div_button .dados_usuario {
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    margin-top: 5px;
+}
