@@ -13,6 +13,7 @@ import Estoque from '../../components/Estoque/Estoque';
 import Cadastro from '../../components/Cadastro/Cadastro';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
+import Movimentacao from '../../components/Movimentacao/Movimentacao';
 
 export default class Dashboard extends Component {
 
@@ -42,6 +43,9 @@ export default class Dashboard extends Component {
         }
         if (this.state.modalContent === 'estoque') {
             return <Estoque />
+        }
+        if (this.state.modalContent === 'movimentacao') {
+            return <Movimentacao geraRelorio />
         }
     }
 
@@ -88,13 +92,17 @@ export default class Dashboard extends Component {
                         <h1>Estoque</h1>
                     </div>
 
+                    <div className='bloco' onClick={() => this.showModal('movimentacao', 'Movimentacao')}>
+                        <img src={estoque} alt="MOVIMENTAO" className="MOVIMENTAO" />
+                        <h1>MOVIMENTAO</h1>
+                    </div>
+
                     <Modal
                         show={this.state.showModal}
                         titleName={this.state.titleName}
                         handleClose={this.hideModal}
                     >
                         {this.ModalContent()}
-
                     </Modal>
                 </div>
             </main>
