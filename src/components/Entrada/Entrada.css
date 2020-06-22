@@ -1,0 +1,145 @@
+.entrada-main {
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+}
+
+.entrada-main p {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    background: #ff8585;
+    position: absolute;
+    top: 10px;
+    transition: 0.5s;
+}
+
+.entrada-main .showError {
+    opacity: 1;
+}
+
+.entrada-main .hideError {
+    opacity: 0;
+}
+
+.entrada-main .showSucess {
+    opacity: 1;
+    color: #007e00;
+    border: 1px solid #007e00;
+    background: #8efd93;
+}
+
+.entrada-main .entrada-container {
+    padding: 16px;
+}
+
+.entrada-main .entrada-container input {
+    border-radius: 5px;
+}
+
+.entrada-main .entrada-container .text-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+}
+
+.entrada-main .entrada-container .fixedValue {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    background: #ddd;
+    cursor: default;
+}
+
+.entrada-main .entrada-container .input-2rows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.entrada-main .entrada-container .input-2rows div {
+    width: 49%;
+}
+
+.entrada-main .entrada-container .input-2rows label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.entrada-main .button-div {
+    display: flex;
+    justify-content: center;
+}
+
+.entrada-main .button-div button {
+    background-color: #4CAF50;
+    color: #fff;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin-top: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.entrada-main .button-div button:hover {
+    background-color: #275a29;
+}
+
+.entrada-main label {
+    color: rgb(71, 71, 71);
+    margin-left: 10px;
+
+}
+
+.entrada-main .entrada-container .text-field-drop {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+}
+
+.entrada-main .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.entrada-main .dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    background: #fff;
+    cursor: pointer;
+}
+
+.entrada-main .dropdown a:hover {
+    background-color: #ddd;
+}
+
+.entrada-main .show {
+    display: block;
+}

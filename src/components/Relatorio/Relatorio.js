@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import './Relatorio.css';
 
+import PropTypes from 'prop-types';
+
+
 /**
  * Componente Relatorio para a geração de relatorios customizados.
  * Deve receber como Propriedades:
- *  - um template dos dados a serem exibidos em formato Objeto JSON (dataTemplate);
+ *  - dataTemplate - um template dos dados a serem exibidos em formato Objeto JSON (propriedade:'HeaderValue') ;
  *      O template deve refletir o formato dos dados buscados no callback, 'achatando' objetos aninhados
  *      com o caracter '_'. 
- *      Ex: dados { a: 1, objAninhado:{ b: 2} } -> dadosTemplate:{a : '', objAninhado_b: ''}
+ *      Ex: dados { a: 1, objAninhado:{ b: 2} } -> dadosTemplate:{a : 'Coluna A', objAninhado_b: 'Coluna B'}
  *  - função callback para a geração dos dados (generateTableDataFunction), recebendo como parametro 
  *      o numero da pagina a ser carregada no relatorio
  */
+
 export default class Relatorio extends Component {
 
-    // Relatorio.propTypes = {
-
-    // };
+    
 
     state = {
         dataItems: [],
@@ -32,7 +34,7 @@ export default class Relatorio extends Component {
 
     loadData = (page) => {
         let generatedDataPromise = this.props.generateTableDataFunction(page);
-        console.log("Gen: " + generatedDataPromise);
+        //console.log("Gen: " + generatedDataPromise);
         generatedDataPromise.then(result => {
             this.setState(
                 {
@@ -59,7 +61,7 @@ export default class Relatorio extends Component {
         return (
 
             <th key={keyVal}>
-                {value}
+                {this.props.dataTemplate[value]}
             </th>
 
         )
@@ -93,25 +95,24 @@ export default class Relatorio extends Component {
             , {})//valor inicial do reduce é um novo objeto vazio
     }
 
-    mapTableData = (dataItem) => {
+    generateTableRows = (dataItem, index) => {
         let flattenedData = this.flatten(dataItem);
-        console.log("Flattened:: " + flattenedData);
+        //console.log("Flattened:: " + flattenedData);
         let templateKeys = Object.keys(this.props.dataTemplate);
+        let dataItemKey = 'pg' + this.state.currentPage + '_row' + index;
         return (
-            <tr key={'dataItem_' + dataItem.id} >
+            <tr key={dataItemKey} >
                 {
-                    templateKeys.map((elem) => {
+                    templateKeys.map((elem, elIndex) => {
                         return (
-                            <td>{flattenedData[elem]}</td>
+                            <td key={dataItemKey + '_td' + elIndex}>{flattenedData[elem]}</td>
                         );
                     })
                 }
             </tr>
         )
+
     }
-
-
-
 
     conteudoRelatorio = () => {
         if (this.state.error) {
@@ -119,13 +120,18 @@ export default class Relatorio extends Component {
         }
         let int_currentPage = parseInt(this.state.currentPage);
         let int_totalPages = parseInt(this.state.totalPages);
-        console.log('current: ' + int_currentPage + " | total: " + int_totalPages);
+        //console.log('current: ' + int_currentPage + " | total: " + int_totalPages);
         return (
             <>
-                <b>Total: {this.state.totalRecords}. Páginas: {this.state.totalPages}. </b>
                 <table id='table_relatorio'>
-                    {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
-                    {this.state.dataItems.map(this.mapTableData)}
+                    <thead>
+                        <tr>
+                            {Object.keys(this.props.dataTemplate).map(this.generateTableHeader)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.dataItems.map(this.generateTableRows)}
+                    </tbody>
                 </table>
                 <div className='pageButtons'>
                     <button className='button_pageNumber' id='button_previous'
@@ -141,7 +147,8 @@ export default class Relatorio extends Component {
                                         accumulator.concat(
                                             <button className='button_pageNumber'
                                                 onClick={(e) => this.loadData(curValue)
-                                                }>
+                                                }
+                                                key={'btn_page' + curValue}>
                                                 {curValue}
                                             </button>
                                         )
@@ -152,7 +159,7 @@ export default class Relatorio extends Component {
                     <button className='button_pageNumber' id='button_next'
                         onClick={() => this.loadData(int_currentPage + 1)}
                         disabled={int_currentPage >= int_totalPages}>
-                    &gt;&gt;</button>
+                        &gt;&gt;</button>
                 </div>
             </>
         )
@@ -169,3 +176,7 @@ export default class Relatorio extends Component {
         );
     }
 }
+Relatorio.propTypes = {
+    dataTemplate : PropTypes.object.isRequired,
+    generateTableDataFunction: PropTypes.func.isRequired,
+};

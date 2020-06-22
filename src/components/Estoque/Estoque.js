@@ -5,13 +5,13 @@ import './Estoque.css';
 import Relatorio from '../Relatorio/Relatorio';
 
 let ProductTemplate = {
-    idProduto: 0,
-    Product_nome: '',
-    Product_marca: '',
-    tamanho: '',
-    quantidade: '',
-    createdAt: '',
-    updatedAt: '',
+    idProduto: 'Id',
+    Product_nome: 'Nome',
+    Product_marca: 'Marca',
+    tamanho: 'Tamanho',
+    quantidade: 'Qtde',
+    createdAt: 'Criacao',
+    updatedAt: 'Atualizacao',
 }
 
 export default class Estoque extends Component {
@@ -26,20 +26,12 @@ export default class Estoque extends Component {
     }
 
     loadRelatorioEstoque = async (pageNumber) => {
-        console.log('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);
+        //console.log('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);
         const response = await api.get('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);
         this.setState({ dataItems: response.data.docs });
-        console.log(response);
+        //console.log(response);
         return response.data;
     };
-
-    serveState = () => {
-        console.log("Serve: " + this.state.dataItems);
-        return this.state.dataItems;
-    }
-
-
-
     render() {
         return (
             <>

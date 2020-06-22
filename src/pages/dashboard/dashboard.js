@@ -8,10 +8,12 @@ import estoque from '../../images/opened_box.png';
 import entrada from '../../images/box.png';
 import pedido from '../../images/supermarket.png';
 
-import Cadastro from '../../components/Cadastro/Cadastro';
+import Entrada from '../../components/Entrada/Entrada';
 import Estoque from '../../components/Estoque/Estoque';
+import Cadastro from '../../components/Cadastro/Cadastro';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
+import Movimentacao from '../../components/Movimentacao/Movimentacao';
 
 export default class Dashboard extends Component {
 
@@ -33,14 +35,17 @@ export default class Dashboard extends Component {
     }
 
     ModalContent = () => {
-        if (this.state.modalContent === 'saida') {
+        if (this.state.modalContent === 'cadastro') {
             return <Cadastro />
         }
         if (this.state.modalContent === 'entrada') {
-            return <Cadastro />
+            return <Entrada />
         }
         if (this.state.modalContent === 'estoque') {
             return <Estoque />
+        }
+        if (this.state.modalContent === 'movimentacao') {
+            return <Movimentacao geraRelorio />
         }
     }
 
@@ -71,12 +76,17 @@ export default class Dashboard extends Component {
                 <Header onLogoutClick={this.onLogoutClick} />
                 <div className='dashboard'>
 
-                    <div className='bloco'>
+                    <div className='bloco' >
                         <img src={pedido} alt="Avatar" className="avatar" />
                         <h1>Novo pedido</h1>
                     </div>
 
-                    <div className='bloco' onClick={() => this.showModal('entrada', 'Cadastro de produtos')}>
+                    <div className='bloco' onClick={() => this.showModal('cadastro', 'Cadastro de produto')}>
+                        <img src={entrada} alt="Avatar" className="avatar" />
+                        <h1>Cadastro de produtos</h1>
+                    </div>
+
+                    <div className='bloco' onClick={() => this.showModal('entrada', 'Entrada de produto')}>
                         <img src={entrada} alt="Avatar" className="avatar" />
                         <h1>Entrada de produtos</h1>
 
@@ -87,13 +97,17 @@ export default class Dashboard extends Component {
                         <h1>Estoque</h1>
                     </div>
 
+                    <div className='bloco' onClick={() => this.showModal('movimentacao', 'Movimentacao')}>
+                        <img src={estoque} alt="MOVIMENTAO" className="MOVIMENTAO" />
+                        <h1>MOVIMENTAO</h1>
+                    </div>
+
                     <Modal
                         show={this.state.showModal}
                         titleName={this.state.titleName}
                         handleClose={this.hideModal}
                     >
                         {this.ModalContent()}
-
                     </Modal>
                 </div>
             </main>

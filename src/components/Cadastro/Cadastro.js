@@ -16,7 +16,9 @@ export default class Cadastro extends Component {
         preco: 0.00,
         showErrorClassName: 'hideError',
         error: "ERRO",
-        result: {}
+        result: {},
+        currentPage: 1,
+        products: []
     }
 
     hiddingAlert = () => {
