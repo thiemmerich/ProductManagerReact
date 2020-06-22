@@ -27,14 +27,7 @@ function Movimentacao(props) {
     };
 
     let sendData = async (movimentacao) => {
-        try {
-            const response = await api.post('/movimentacao/', movimentacao);
-            //alert(produto.preco);
-            return response;
-        } catch (err) {
-           console.log("ERRO: enviando movimentacao: " + err)
-           return err;
-        }
+        await api.post('/movimentacao/', movimentacao);
     }
 
     if (props.geraRelorio) {
@@ -44,12 +37,14 @@ function Movimentacao(props) {
             />
         )
     } else {
-        return sendData({
+        return ()=> sendData({
             idProduto: props.idProduto,
             quantidade: props.quantidade,
             valor: props.valor,
             tipo: props.tipo,
             usuario: props.usuario,
+            tamanho: props.tamanho,
+            devolucao: props.devolucao
         })
     }
 }
@@ -59,9 +54,10 @@ let m = <Movimentacao idProduto='' quantidade={1} valor={50} tipo='entrada' usua
 
 Movimentacao.propTypes = {
     geraRelorio: PropTypes.bool,
-    idProduto: PropTypes.string,
+    idProduto: PropTypes.number,
     quantidade: PropTypes.number,
     valor: PropTypes.number,
-    tipo: PropTypes.string,
+    tipo: PropTypes.oneOf(['entrada','saida']),
     usuario: PropTypes.number,
+    devolucao: PropTypes.bool
 };
