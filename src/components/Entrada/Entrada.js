@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import './Entrada.css';
 import CurrencyInput from 'react-currency-input';
+import Movimentacao from '../Movimentacao/Movimentacao';
+import { getUserID } from '../../services/auth'
 
 export default class Entrada extends Component {
 
@@ -54,13 +56,28 @@ export default class Entrada extends Component {
             quantidade: this.state.quantidade
         }
 
-        const { nome, tamanho } = this.state.product;
+        const { nome } = this.state.product;
+       
 
-        if (!nome || !tamanho || !this.state.quantidade) {
+        if (!nome || !this.state.tamanho || !this.state.quantidade) {
             setTimeout(this.hiddingAlert, 3000);
             this.setState({ showErrorClassName: 'showError', error: "Preencha todos os campos!" });
         } else {
             try {
+
+                let movimento = {
+                    idProduto: this.state.product.id,
+                    quantidade: parseInt(this.state.quantidade),
+                    valor: this.state.product.preco,
+                    tipo: 'entrada',
+                    usuario: parseInt(getUserID()),
+                    tamanho: this.state.tamanho,
+                    devolucao: false,
+                }
+                let sendMovimentacao = Movimentacao(movimento);
+
+                console.log(sendMovimentacao);
+                sendMovimentacao();
                 //await api.post('product', produto);
                 //alert(produto.preco);
                 setTimeout(this.hiddingAlert, 3000);
