@@ -99,7 +99,8 @@ export default class Entrada extends Component {
                                 product => (
                                     <a
                                         onClick={e => this.saveSelectedProduct(product)}
-                                        key={product.id}>
+                                        key={product.id}
+                                    >
                                         {product.nome}
                                     </a>
                                 )

@@ -11,7 +11,6 @@ export default class Login extends Component {
     state = {
         name: "",
         password: "",
-        token: "",
         status: "",
         error: "",
         showErrorClassName: 'hideError',
@@ -39,7 +38,14 @@ export default class Login extends Component {
                     result: response.data.result
                 });
 
-                login(this.state.token, this.state.status);
+                console.log(this.state.result);
+
+                login(response.data.token,
+                    response.data.status,
+                    response.data.result.name,
+                    response.data.result.id,
+                    response.data.result.email
+                );
 
                 this.props.history.push("/dashboard");
 
