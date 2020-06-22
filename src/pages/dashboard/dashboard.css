@@ -19,10 +19,10 @@
 }
 
 .dashboard .bloco img{
-    height: 50%;
+    height: 40%;
     width: 50%;
     margin-left: 25%;
-    margin-top: 25%;
+    margin-top: 30%;
 }
 
 .dashboard .bloco h1{
@@ -31,6 +31,5 @@
     text-align: center;
     width: 80%;
     margin-left: 10%;
-    margin-top: 50px;
-
+    margin-top: 70px;
 }

@@ -99,7 +99,7 @@ export default class Dashboard extends Component {
 
                     <div className='bloco' onClick={() => this.showModal('movimentacao', 'Movimentacao')}>
                         <img src={estoque} alt="MOVIMENTAO" className="MOVIMENTAO" />
-                        <h1>MOVIMENTAO</h1>
+                        <h1>Movimentação</h1>
                     </div>
 
                     <Modal

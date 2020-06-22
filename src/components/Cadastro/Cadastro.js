@@ -8,6 +8,7 @@ export default class Cadastro extends Component {
 
     state = {
         showHideClassName: "",
+        codigo: '',
         nome: "",
         descricao: "",
         tamanho: "",
@@ -65,14 +66,27 @@ export default class Cadastro extends Component {
             <main className='cadastro-main'>
                 <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
-                    
                     <div className='cadastro-container'>
-                        <label ><b>Nome do produto</b></label>
-                        <input
-                            className='text-field'
-                            placeholder='Nome do produto'
-                            onChange={e => this.setState({ nome: e.target.value })}
-                        />
+                        <div className='input-2rows'>
+                            <div className='input-codigo'>
+                                <label ><b>Codigo</b></label>
+                                <input
+                                    className='text-field'
+                                    placeholder='Codigo'
+                                    type="text"
+                                    value={this.state.codigo}
+                                    onChange={e => this.setState({ codigo: e.target.value.replace(/\D/, '') })}
+                                />
+                            </div>
+                            <div className='input-nome'>
+                                <label ><b>Nome do produto</b></label>
+                                <input
+                                    className='text-field'
+                                    placeholder='Nome do produto'
+                                    onChange={e => this.setState({ nome: e.target.value })}
+                                />
+                            </div>
+                        </div>
                         <label ><b>Descrição</b></label>
                         <textarea
                             className='text-field'
