@@ -13,7 +13,6 @@ export default class Entrada extends Component {
         showErrorClassName: 'hideError',
         error: "ERRO",
         result: {},
-        currentPage: 1,
         products: [],
         product: {},
         tamanho: '',
@@ -28,28 +27,65 @@ export default class Entrada extends Component {
         this.setState({ preco: floatvalue });
     }
 
-    loadProductsFromApi = async (likeName) => {
-        const productsFromApi = await api.get(`product/${likeName}`);
-
+    cleanObjects = () => {
         this.setState({
-            products: productsFromApi.data
+            products: [],
+            product: {}
         });
+    }
 
-        console.log(this.state.products);
+    loadProductsFromApi = async (likeName) => {
 
-        this.showDropDown();
+        this.cleanObjects();
+
+        try {
+            await api.get(`product/${likeName}`)
+                .then((productsFromApi) => {
+                    if (productsFromApi.data.length > 0) {
+                        this.setState({
+                            products: productsFromApi.data
+                        });
+
+                        console.log(this.state.products);
+
+                        this.showDropDown();
+                    }
+                });
+
+        } catch (err) {
+            console.log("ERRO - Cadastro - Erro ao buscar produtos - " + err);
+        }
     }
 
     loadProductsFromApiByCodigo = async (codigo) => {
-        const productsFromApi = await api.get(`product/cod/${codigo}`);
+
+        this.cleanObjects();
+
+        var produto = this.state.product;
+        produto.codigo = codigo;
 
         this.setState({
-            products: productsFromApi.data
+            product: produto
         });
 
-        console.log(this.state.products);
+        try {
+            await api.get(`product/cod/${codigo}`)
+                .then((productsFromApi) => {
 
-        this.showDropDown();
+                    if (productsFromApi.data.length > 0) {
+                        this.setState({
+                            products: productsFromApi.data
+                        });
+
+                        if (this.state.products.length > 0) {
+                            this.showDropDown();
+                        }
+                    }
+                });
+
+        } catch (err) {
+            console.log("ERRO - Cadastro - Erro ao buscar produtos - " + err);
+        }
     }
 
     saveSelectedProduct = (product) => {
@@ -108,6 +144,21 @@ export default class Entrada extends Component {
         document.getElementById("myDropdown").style.display = "none";
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.hideCallback !== nextProps.hideCallback) {
+            if (nextProps.hideCallback) {
+                this.refs.codigo.value = '';
+                this.refs.nome.value = '';
+                this.refs.descricao.value = '';
+                this.refs.tipo.value = '';
+                this.refs.marca.value = '';
+                this.refs.tamanho.value = '';
+                this.refs.qtde.value = '';
+                this.cleanObjects();
+            }
+        }
+    }
+
     render() {
         return (
             <main className='entrada-main'>
@@ -122,6 +173,7 @@ export default class Entrada extends Component {
                                     placeholder='Codigo'
                                     type="text"
                                     value={this.state.product.codigo}
+                                    ref='codigo'
                                     onChange={e => this.loadProductsFromApiByCodigo(e.target.value.replace(/\D/, ''))}
                                 />
                             </div>
@@ -131,13 +183,13 @@ export default class Entrada extends Component {
                                     className='text-field-drop'
                                     placeholder='Nome do produto'
                                     value={this.state.product.nome}
+                                    ref='nome'
                                     onChange={e => this.loadProductsFromApi(e.target.value)}
                                 />
-                                <div id="myDropdown" class="dropdown-content">
+                                <div id="myDropdown" className="dropdown-content">
                                     {this.state.products.map(
                                         product => (
-                                            <a
-                                                onClick={e => this.saveSelectedProduct(product)}
+                                            <a onClick={e => this.saveSelectedProduct(product)}
                                                 key={product.id}
                                             >
                                                 {product.nome}
@@ -152,7 +204,8 @@ export default class Entrada extends Component {
                         <input
                             className='fixedValue'
                             placeholder='Descrição'
-                            readonly='readonly'
+                            readOnly={true}
+                            ref='descricao'
                             value={this.state.product.descricao}
                         />
 
@@ -160,7 +213,8 @@ export default class Entrada extends Component {
                         <input
                             className='fixedValue'
                             placeholder='Tipo'
-                            readonly='readonly'
+                            readOnly={true}
+                            ref='tipo'
                             value={this.state.product.tipo}
                         />
 
@@ -168,7 +222,8 @@ export default class Entrada extends Component {
                         <input
                             className='fixedValue'
                             placeholder='Marca'
-                            readonly='readonly'
+                            readOnly={true}
+                            ref='marca'
                             value={this.state.product.marca}
                         />
 
@@ -178,7 +233,8 @@ export default class Entrada extends Component {
                             decimalSeparator=","
                             thousandSeparator="."
                             prefix="R$"
-                            readonly='readonly'
+                            readOnly={true}
+                            ref='valor'
                             value={this.state.product.preco}
                         />
 
@@ -188,6 +244,7 @@ export default class Entrada extends Component {
                                 <input
                                     className='text-field'
                                     placeholder='Tamanho'
+                                    ref='tamanho'
                                     onChange={e => this.setState({ tamanho: e.target.value })}
                                 />
                             </div>
@@ -197,6 +254,7 @@ export default class Entrada extends Component {
                                     className='text-field'
                                     placeholder='Quantidade'
                                     value={this.state.quantidade}
+                                    ref='qtde'
                                     onChange={e => this.setState({ quantidade: e.target.value.replace(/\D/, '') })}
                                 />
                             </div>

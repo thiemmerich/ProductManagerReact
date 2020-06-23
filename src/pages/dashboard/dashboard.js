@@ -22,6 +22,7 @@ export default class Dashboard extends Component {
         productInfo: {},
         page: 1,
         showModal: 'modal display-none',
+        cleanFields: false,
         modalContent: '',
         titleName: ''
     }
@@ -30,16 +31,17 @@ export default class Dashboard extends Component {
         this.setState({
             showModal: 'modal display-block',
             modalContent: modalContent,
-            titleName: modalName
+            titleName: modalName,
+            cleanFields: false
         });
     }
 
     ModalContent = () => {
         if (this.state.modalContent === 'cadastro') {
-            return <Cadastro />
+            return <Cadastro hideCallback={this.state.cleanFields} />
         }
         if (this.state.modalContent === 'entrada') {
-            return <Entrada />
+            return <Entrada hideCallback={this.state.cleanFields} />
         }
         if (this.state.modalContent === 'estoque') {
             return <Estoque />
@@ -50,7 +52,10 @@ export default class Dashboard extends Component {
     }
 
     hideModal = () => {
-        this.setState({ showModal: 'modal display-none' });
+        this.setState({
+            showModal: 'modal display-none',
+            cleanFields: true
+        });
         console.log('Hiding Entrada Modal');
     }
 
