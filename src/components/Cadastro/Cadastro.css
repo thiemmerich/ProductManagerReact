@@ -57,6 +57,7 @@
     margin: 8px 0;
     border: 1px solid rgb(71, 71, 71);
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cadastro-main .cadastro-container .input-2rows {
@@ -118,6 +119,7 @@
 }
 
 .cadastro-main .dropdown-content {
+    margin-top: -7px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -129,17 +131,20 @@
     border: 1px solid rgb(71, 71, 71);
 }
 
-.cadastro-main .dropdown-content a {
+.cadastro-main .dropdown-content h3 {
     color: black;
     padding: 8px 12px;
     text-decoration: none;
     display: block;
     background: #fff;
     cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: 0.2s;
 }
 
-.cadastro-main .dropdown a:hover {
-    background-color: #ddd;
+.cadastro-main .dropdown-content h3:hover {
+    background: #ddd;
 }
 
 .cadastro-main .show {

@@ -98,15 +98,7 @@ export default class Entrada extends Component {
     submitCadastro = async e => {
         e.preventDefault();
 
-        const estoque = {
-            idProduto: this.state.product.id,
-            tamanho: this.state.tamanho,
-            quantidade: this.state.quantidade
-        }
-
-        const { nome } = this.state.product;
-
-        if (!nome || !this.state.tamanho || !this.state.quantidade) {
+        if (!this.state.product.nome || !this.state.tamanho || !this.state.quantidade) {
             setTimeout(this.hiddingAlert, 3000);
             this.setState({ showErrorClassName: 'showError', error: "Preencha todos os campos!" });
         } else {
@@ -144,7 +136,7 @@ export default class Entrada extends Component {
         document.getElementById("myDropdown").style.display = "none";
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillUpdate(nextProps) {
         if (this.props.hideCallback !== nextProps.hideCallback) {
             if (nextProps.hideCallback) {
                 this.refs.codigo.value = '';
@@ -189,11 +181,11 @@ export default class Entrada extends Component {
                                 <div id="myDropdown" className="dropdown-content">
                                     {this.state.products.map(
                                         product => (
-                                            <a onClick={e => this.saveSelectedProduct(product)}
+                                            <h3 onClick={e => this.saveSelectedProduct(product)}
                                                 key={product.id}
                                             >
                                                 {product.nome}
-                                            </a>
+                                            </h3>
                                         )
                                     )}
                                 </div>
