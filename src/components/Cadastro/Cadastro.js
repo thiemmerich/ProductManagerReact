@@ -67,7 +67,7 @@ export default class Cadastro extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillUpdate(nextProps) {
         if (this.props.hideCallback !== nextProps.hideCallback) {
             if (nextProps.hideCallback) {
                 this.refs.codigo.value = '';
@@ -141,7 +141,6 @@ export default class Cadastro extends Component {
                                     className='text-field'
                                     placeholder='Codigo'
                                     type="text"
-                                    value={this.state.product.codigo}
                                     ref='codigo'
                                     onChange={e => this.loadProductsFromApiByCodigo(e.target.value.replace(/\D/, ''))}
                                 />
@@ -158,11 +157,11 @@ export default class Cadastro extends Component {
                                 <div id="myDropdown" className="dropdown-content">
                                     {this.state.products.map(
                                         product => (
-                                            <a onClick={e => this.saveSelectedProduct(product)}
+                                            <h3 onClick={e => this.saveSelectedProduct(product)}
                                                 key={product.id}
                                             >
                                                 {product.nome}
-                                            </a>
+                                            </h3>
                                         )
                                     )}
                                 </div>

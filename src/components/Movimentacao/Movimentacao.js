@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import api from '../../services/api';
 
 import Relatorio from '../Relatorio/Relatorio';
@@ -49,8 +49,6 @@ function Movimentacao(props) {
     }
 }
 export default Movimentacao;
-
-let m = <Movimentacao idProduto='' quantidade={1} valor={50} tipo='entrada' usuario={'idDoUsuario'}/>
 
 Movimentacao.propTypes = {
     geraRelorio: PropTypes.bool,
