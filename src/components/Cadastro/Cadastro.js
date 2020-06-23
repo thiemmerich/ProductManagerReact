@@ -8,18 +8,20 @@ export default class Cadastro extends Component {
 
     state = {
         showHideClassName: "",
-        codigo: '',
-        nome: "",
-        descricao: "",
-        tamanho: "",
-        tipo: "",
-        marca: "",
-        preco: 0.00,
         showErrorClassName: 'hideError',
         error: "ERRO",
         result: {},
         currentPage: 1,
-        products: []
+        products: [],
+        product: {
+            codigo: '',
+            nome: '',
+            descricao: '',
+            tamanho: '',
+            tipo: '',
+            marca: '',
+            preco: 0
+        }
     }
 
     hiddingAlert = () => {
@@ -27,29 +29,32 @@ export default class Cadastro extends Component {
     }
 
     handleChange = (event, maskedvalue, floatvalue) => {
-        this.setState({ preco: floatvalue });
+        this.handleInputChange('preco', floatvalue);
+    }
+
+    handleInputChange = (field, value) => {
+        var produto = this.state.product;
+        produto[field] = value;
+
+        this.setState({
+            product: produto
+        });
     }
 
     submitCadastro = async e => {
         e.preventDefault();
 
-        const produto = {
-            nome: this.state.nome,
-            descricao: this.state.descricao,
-            tamanho: this.state.tamanho,
-            tipo: this.state.tipo,
-            marca: this.state.marca,
-            preco: this.state.preco
-        }
+        const { codigo, nome, descricao, tamanho, tipo, marca, preco } = this.state.product;
 
-        const { nome, descricao, tamanho, tipo, marca, preco } = this.state;
+        //console.log(this.state.product);
 
-        if (!nome || !descricao || !tamanho || !tipo || !marca || !preco) {
+        if (!codigo || !nome || !descricao || !tamanho || !tipo || !marca || !preco) {
+            console.log("FALTAM CAMPOS: " + codigo, nome, descricao, tamanho, tipo, marca, preco);
             setTimeout(this.hiddingAlert, 3000);
             this.setState({ showErrorClassName: 'showError', error: "Preencha todos os campos!" });
         } else {
             try {
-                await api.post('product', produto);
+                await api.post('product', this.state.product);
                 //alert(produto.preco);
                 setTimeout(this.hiddingAlert, 3000);
                 this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
@@ -57,7 +62,69 @@ export default class Cadastro extends Component {
             } catch (err) {
                 setTimeout(this.hiddingAlert, 3000);
                 this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
+                console.log(err.errorMsg);
             }
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.hideCallback !== nextProps.hideCallback) {
+            if (nextProps.hideCallback) {
+                this.refs.codigo.value = '';
+                this.refs.nome.value = '';
+                this.refs.descricao.value = '';
+                this.refs.tipo.value = '';
+                this.refs.marca.value = '';
+                this.refs.tamanho.value = '';
+                this.setState({
+                    products: [],
+                    product: {}
+                });
+            }
+        }
+    }
+
+    showDropDown = () => {
+        document.getElementById("myDropdown").style.display = "block";
+    }
+
+    hideDropDown = () => {
+        document.getElementById("myDropdown").style.display = "none";
+    }
+
+    saveSelectedProduct = (product) => {
+        this.setState({
+            product: product
+        });
+        this.hideDropDown();
+    }
+
+    loadProductsFromApiByCodigo = async (codigo) => {
+
+        var produto = this.state.product;
+        produto.codigo = codigo;
+
+        this.setState({
+            product: produto
+        });
+
+        try {
+            await api.get(`product/cod/${codigo}`)
+                .then((productsFromApi) => {
+
+                    if (productsFromApi.data.length > 0) {
+                        this.setState({
+                            products: productsFromApi.data
+                        });
+
+                        if (this.state.products.length > 0) {
+                            this.showDropDown();
+                        }
+                    }
+                });
+
+        } catch (err) {
+            console.log("ERRO - Cadastro - Erro ao buscar produtos - " + err);
         }
     }
 
@@ -74,8 +141,9 @@ export default class Cadastro extends Component {
                                     className='text-field'
                                     placeholder='Codigo'
                                     type="text"
-                                    value={this.state.codigo}
-                                    onChange={e => this.setState({ codigo: e.target.value.replace(/\D/, '') })}
+                                    value={this.state.product.codigo}
+                                    ref='codigo'
+                                    onChange={e => this.loadProductsFromApiByCodigo(e.target.value.replace(/\D/, ''))}
                                 />
                             </div>
                             <div className='input-nome'>
@@ -83,8 +151,21 @@ export default class Cadastro extends Component {
                                 <input
                                     className='text-field'
                                     placeholder='Nome do produto'
-                                    onChange={e => this.setState({ nome: e.target.value })}
+                                    value={this.state.product.nome}
+                                    ref='nome'
+                                    onChange={e => this.handleInputChange('nome', e.target.value)}
                                 />
+                                <div id="myDropdown" className="dropdown-content">
+                                    {this.state.products.map(
+                                        product => (
+                                            <a onClick={e => this.saveSelectedProduct(product)}
+                                                key={product.id}
+                                            >
+                                                {product.nome}
+                                            </a>
+                                        )
+                                    )}
+                                </div>
                             </div>
                         </div>
                         <label ><b>Descrição</b></label>
@@ -93,19 +174,25 @@ export default class Cadastro extends Component {
                             placeholder='Descrição'
                             rows="4"
                             cols="50"
-                            onChange={e => this.setState({ descricao: e.target.value })}
+                            value={this.state.product.descricao}
+                            ref='descricao'
+                            onChange={e => this.handleInputChange('descricao', e.target.value)}
                         />
                         <label ><b>Tipo</b></label>
                         <input
                             className='text-field'
                             placeholder='Tipo'
-                            onChange={e => this.setState({ tipo: e.target.value })}
+                            value={this.state.product.tipo}
+                            ref='tipo'
+                            onChange={e => this.handleInputChange('tipo', e.target.value)}
                         />
                         <label ><b>Marca</b></label>
                         <input
                             className='text-field'
                             placeholder='Marca'
-                            onChange={e => this.setState({ marca: e.target.value })}
+                            value={this.state.product.marca}
+                            ref='marca'
+                            onChange={e => this.handleInputChange('marca', e.target.value)}
                         />
                         <div className='input-2rows'>
                             <div>
@@ -113,7 +200,9 @@ export default class Cadastro extends Component {
                                 <input
                                     className='text-field'
                                     placeholder='Tamanho'
-                                    onChange={e => this.setState({ tamanho: e.target.value })}
+                                    value={this.state.product.tamanho}
+                                    ref='tamanho'
+                                    onChange={e => this.handleInputChange('tamanho', e.target.value)}
                                 />
                             </div>
                             <div>
@@ -123,7 +212,8 @@ export default class Cadastro extends Component {
                                     decimalSeparator=","
                                     thousandSeparator="."
                                     prefix="R$"
-                                    value={this.state.preco}
+                                    value={this.state.product.preco}
+                                    ref='valor'
                                     onChangeEvent={this.handleChange}
                                 />
                             </div>
