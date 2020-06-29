@@ -4,6 +4,7 @@ import api from '../../services/api';
 import './Entrada.css';
 import CurrencyInput from 'react-currency-input';
 import Movimentacao from '../Movimentacao/Movimentacao';
+import getGravarMovimentacao from '../Movimentacao/Movimentacao';
 import { getUserID } from '../../services/auth'
 
 export default class Entrada extends Component {
@@ -113,8 +114,7 @@ export default class Entrada extends Component {
                     tamanho: this.state.tamanho,
                     devolucao: false,
                 }
-                let sendMovimentacao = Movimentacao(movimento);
-
+                let sendMovimentacao = getGravarMovimentacao(movimento);
                 console.log(sendMovimentacao);
                 sendMovimentacao();
 
