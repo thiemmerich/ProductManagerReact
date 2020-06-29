@@ -70,8 +70,16 @@
     justify-content: space-between;
 }
 
+.entrada-main .entrada-container .input-2rows .input-codigo {
+    width: 19%;
+}
+
+.entrada-main .entrada-container .input-2rows .input-nome {
+    width: 80%;
+}
+
 .entrada-main .entrada-container .input-2rows div {
-    width: 49%;
+    width: 49.5%;
 }
 
 .entrada-main .entrada-container .input-2rows label {
@@ -116,6 +124,7 @@
 }
 
 .entrada-main .dropdown-content {
+    margin-top: -7px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -127,16 +136,19 @@
     border: 1px solid rgb(71, 71, 71);
 }
 
-.entrada-main .dropdown-content a {
+.entrada-main .dropdown-content h3 {
     color: black;
     padding: 8px 12px;
     text-decoration: none;
     display: block;
     background: #fff;
     cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: 0.2s;
 }
 
-.entrada-main .dropdown a:hover {
+.entrada-main .dropdown-content h3:hover {
     background-color: #ddd;
 }
 

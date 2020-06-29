@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import api from '../../services/api';
 
 import Relatorio from '../Relatorio/Relatorio';
@@ -47,7 +47,6 @@ export function getGravarMovimentacao(props) {
 }
 
 export default Movimentacao;
-
 
 Movimentacao.propTypes = {
     idProduto: PropTypes.number,

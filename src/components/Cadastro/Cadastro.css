@@ -57,6 +57,7 @@
     margin: 8px 0;
     border: 1px solid rgb(71, 71, 71);
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cadastro-main .cadastro-container .input-2rows {
@@ -65,8 +66,16 @@
     justify-content: space-between;
 }
 
+.cadastro-main .cadastro-container .input-2rows .input-codigo {
+    width: 19%;
+}
+
+.cadastro-main .cadastro-container .input-2rows .input-nome {
+    width: 80%;
+}
+
 .cadastro-main .cadastro-container .input-2rows div {
-    width: 49%;
+    width: 49.5%;
 }
 
 .cadastro-main .cadastro-container .input-2rows label {
@@ -99,4 +108,45 @@
 .cadastro-main label {
     color: rgb(71, 71, 71);
     margin-left: 10px;
+}
+
+.cadastro-main .cadastro-container .text-field-drop {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+}
+
+.cadastro-main .dropdown-content {
+    margin-top: -7px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.cadastro-main .dropdown-content h3 {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    background: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: 0.2s;
+}
+
+.cadastro-main .dropdown-content h3:hover {
+    background: #ddd;
+}
+
+.cadastro-main .show {
+    display: block;
 }
