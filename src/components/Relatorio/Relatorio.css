@@ -99,7 +99,7 @@ table tr:last-of-type td {
 }
 
 .pageButtons #button_next,#button_previous {
-    
+    display: block;
 }
 
 #button_next:hover:enabled,#button_previous:hover:enabled {
