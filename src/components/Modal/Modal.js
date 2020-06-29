@@ -10,15 +10,15 @@ export default class Modal extends Component {
     showHideClassName: 'modal display-none'
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Typical usage (don't forget to compare props):
-    console.log('Object: ' + this.props.titleName);
-    console.log('NextProps: ' + nextProps.show);
-    console.log('PrevProps: ' + this.props.show);
+    //console.log('Object: ' + this.props.titleName);
+    //console.log('NextProps: ' + nextProps.show);
+    //console.log('PrevProps: ' + this.props.show);
 
     if (this.props.show !== nextProps.show) {
-      console.log('NextProps: ' + nextProps.show);
-      console.log('PrevProps: ' + this.props.show);
+      //console.log('NextProps: ' + nextProps.show);
+      //console.log('PrevProps: ' + this.props.show);
       this.setState({
         showHideClassName: nextProps.show
       });

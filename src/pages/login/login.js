@@ -4,7 +4,7 @@ import api from '../../services/api';
 import './login.css';
 
 import logo from '../../images/logo.jpeg';
-import { login } from '../../services/auth';
+import { login, logout } from '../../services/auth';
 
 export default class Login extends Component {
 
@@ -19,6 +19,12 @@ export default class Login extends Component {
 
     hiddingAlert = () => {
         this.setState({ showErrorClassName: "hideError" });
+    }
+
+    performLogout = () => {
+        logout();
+        alert('Sessão expirada!');
+        this.props.history.push("/");
     }
 
     handleSignIn = async e => {
@@ -48,6 +54,7 @@ export default class Login extends Component {
                 );
 
                 this.props.history.push("/dashboard");
+                setTimeout(this.performLogout, 3600000);
 
             } catch (err) {
                 setTimeout(this.hiddingAlert, 3000);
