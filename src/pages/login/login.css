@@ -79,3 +79,30 @@
   .login-screen .hideError {
     opacity: 0;
   }
+
+  .login-screen #loadingBlock {
+    background: white;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #3f3f3f;
+    border-radius: 5px;
+    padding: 16px;
+    transition: 0.2s;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .login-screen #loadingBlock h1{
+    justify-content: center;
+    color: #000000;
+    padding: 5px;
+  }
+
+  .login-screen .showLoading {
+    opacity: 1;
+  }
+
+  .login-screen .hideLoading {
+    opacity: 0;
+  }
