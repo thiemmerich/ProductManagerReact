@@ -1,0 +1,67 @@
+.produto-main {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 12px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.produto-main:hover{
+    background: #4CAF50;
+}
+
+.produto-main .produto-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.produto-main .produto-header .position-1{
+    width: 10%;
+}
+
+.produto-main .produto-header .position-2{
+    width: 80%;
+}
+
+.produto-main .produto-header .position-3{
+    width: 10%;
+}
+.produto-main .produto-header h1{
+    margin-right: 10px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.produto-main .produto-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.produto-main .produto-body *{
+    margin-right: 10px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.produto-main .currency-field {
+    border: 0;
+    cursor: default;
+    background-color: transparent;
+}
+
+.produto-main #delete-button {
+    color: rgb(255, 255, 255);
+    background: rgb(255, 0, 51);
+    border-radius: 50%;
+    border: 0;
+    width: 20px;
+    height: 20px;
+    transition: 0.2s;
+    left: 90%;
+}
+
+.produto-main #delete-button:hover {
+    background: rgb(119, 0, 24);
+}

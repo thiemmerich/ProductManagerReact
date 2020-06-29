@@ -8,6 +8,7 @@ import estoque from '../../images/opened_box.png';
 import entrada from '../../images/box.png';
 import pedido from '../../images/supermarket.png';
 
+import Pedido from '../../components/Pedido/Pedido';
 import Entrada from '../../components/Entrada/Entrada';
 import Estoque from '../../components/Estoque/Estoque';
 import Cadastro from '../../components/Cadastro/Cadastro';
@@ -37,6 +38,9 @@ export default class Dashboard extends Component {
     }
 
     ModalContent = () => {
+        if (this.state.modalContent === 'pedido') {
+            return <Pedido hideCallback={this.state.cleanFields} />
+        }
         if (this.state.modalContent === 'cadastro') {
             return <Cadastro hideCallback={this.state.cleanFields} />
         }
@@ -81,7 +85,7 @@ export default class Dashboard extends Component {
                 <Header onLogoutClick={this.onLogoutClick} />
                 <div className='dashboard'>
 
-                    <div className='bloco' >
+                    <div className='bloco' onClick={() => this.showModal('pedido', 'Novo pedido')}>
                         <img src={pedido} alt="Avatar" className="avatar" />
                         <h1>Novo pedido</h1>
                     </div>

@@ -1,0 +1,192 @@
+.pedido-main {
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+}
+
+.pedido-main p {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    background: #ff8585;
+    position: absolute;
+    top: 10px;
+    transition: 0.5s;
+}
+
+.pedido-main .showError {
+    opacity: 1;
+}
+
+.pedido-main .hideError {
+    opacity: 0;
+}
+
+.pedido-main .showSucess {
+    opacity: 1;
+    color: #007e00;
+    border: 1px solid #007e00;
+    background: #8efd93;
+}
+
+.pedido-main .pedido-container {
+    padding: 16px;
+}
+
+.pedido-main .pedido-container input {
+    border-radius: 5px;
+}
+
+.pedido-main .pedido-container .text-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+}
+
+.pedido-main .pedido-container .fixedValue {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    background: #ddd;
+    cursor: default;
+}
+
+.pedido-main .pedido-container .input-2rows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pedido-main .pedido-container .input-2rows .input-cod {
+    width: 19%;
+}
+
+.pedido-main .pedido-container .input-2rows .input-nome {
+    width: 80%;
+}
+
+.pedido-main .pedido-container .input-2rows div {
+    width: 49.5%;
+}
+
+.pedido-main .pedido-container .input-2rows label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.pedido-main .pedido-container .input-3rows {
+    display: flex;
+    flex-direction: row;
+}
+
+.pedido-main .pedido-container .input-3rows .div-tamanho {
+    margin-right: 5px;
+}
+
+.pedido-main .button-div {
+    display: flex;
+    justify-content: center;
+}
+
+.pedido-main .button-div button {
+    background-color: #4CAF50;
+    color: #fff;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin-top: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.pedido-main .button-div button:hover {
+    background-color: #275a29;
+}
+
+.pedido-main label {
+    color: rgb(71, 71, 71);
+    margin-left: 10px;
+
+}
+
+.pedido-main .pedido-container .text-field-drop {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(71, 71, 71);
+    box-sizing: border-box;
+}
+
+.pedido-main .dropdown-content {
+    margin-top: -7px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.pedido-main .dropdown-content h3 {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    background: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: 0.2s;
+}
+
+.pedido-main .dropdown-content h3:hover {
+    background-color: #ddd;
+}
+
+.pedido-main .show {
+    display: block;
+}
+
+.pedido-main .product-list {
+    overflow-y: auto;    
+    border: 1px solid rgb(71, 71, 71);
+    height: 200px;
+    border-radius: 5px;
+    padding: 1px 1px 1px 1px;
+    background-color: #fff;
+}
+
+.pedido-main .add-button {
+    background-color: #4CAF50;
+    color: #fff;
+    height: 40px;
+    width: 80px;
+    margin-top: 26px;
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.pedido-main .add-button:hover {
+    background-color: #275a29;
+}
