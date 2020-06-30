@@ -5,6 +5,11 @@ import './Produto.css';
 
 export default class Produto extends Component {
 
+    state = {
+        valorUnitario: this.props.produto.preco,
+        valorTotal: (this.props.produto.preco * this.props.produto.quantidade)
+    }
+
     handleDelete = () => {
         this.props.handleDelete(this.props.produto.id);
     }
@@ -28,18 +33,42 @@ export default class Produto extends Component {
                     />
                 </div>
                 <div className='produto-body'>
-                    <h3>Descrição: {this.props.produto.descricao}</h3>
-                    <CurrencyInput
-                        className='currency-field'
-                        decimalSeparator=","
-                        thousandSeparator="."
-                        prefix="R$"
-                        readOnly={true}
-                        ref='valor'
-                        value={this.props.produto.preco}
-                    />
-                    <h3>Tamanho: {this.props.produto.tamanho}</h3>
-                    <h3>Quantidade: {this.props.produto.quantidade}</h3>
+                    <div>
+                        <h3>Descrição: </h3>
+                        <h3>{this.props.produto.descricao}</h3>
+                    </div>
+                    <div>
+                        <h3>Valor Unitario: </h3>
+                        <CurrencyInput
+                            className='currency-field'
+                            decimalSeparator=","
+                            thousandSeparator="."
+                            prefix="R$"
+                            readOnly={true}
+                            ref='valor'
+                            value={this.state.valorUnitario}
+                        />
+                    </div>
+                    <div>
+                        <h3>Valor Total: </h3>
+                        <CurrencyInput
+                            className='currency-field'
+                            decimalSeparator=","
+                            thousandSeparator="."
+                            prefix="R$"
+                            readOnly={true}
+                            ref='valor'
+                            value={this.state.valorTotal}
+                        />
+                    </div>
+                    <div>
+                        <h3>Tamanho: </h3>
+                        <h3>{this.props.produto.tamanho}</h3>
+                    </div>
+                    <div>
+                        <h3>Quantidade: </h3>
+                        <h3>{this.props.produto.quantidade}</h3>
+                    </div>
                 </div>
             </div>
         );

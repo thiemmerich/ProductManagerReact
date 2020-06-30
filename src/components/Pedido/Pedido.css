@@ -88,6 +88,14 @@
     margin-right: 10px;
 }
 
+.pedido-main .pedido-container .input-2rows #total-preco {
+    width: 70%;
+}
+
+.pedido-main .pedido-container .input-2rows #total-preco-label {
+    width: 30%;
+}
+
 .pedido-main .pedido-container .input-3rows {
     display: flex;
     flex-direction: row;
@@ -102,7 +110,7 @@
     justify-content: center;
 }
 
-.pedido-main .button-div button {
+.pedido-main .button-div #submit-button {
     background-color: #4CAF50;
     color: #fff;
     height: 40px;
@@ -114,7 +122,7 @@
     transition: 0.2s;
 }
 
-.pedido-main .button-div button:hover {
+.pedido-main .button-div #submit-button:hover {
     background-color: #275a29;
 }
 

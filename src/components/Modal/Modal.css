@@ -6,7 +6,7 @@
   height: auto;
   left: 50%;
   top: 10%;
-  transform: translate(-50%);
+  transform: translate(-50%, -5%);
   background: rgb(167, 167, 167);
   border-radius: 5px;
   box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);

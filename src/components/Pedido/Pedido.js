@@ -4,6 +4,8 @@ import CurrencyInput from 'react-currency-input';
 import './Pedido.css';
 import Produto from '../Produto/Produto';
 import api from '../../services/api';
+import getGravarMovimentacao from '../Movimentacao/Movimentacao';
+import { getUserID } from '../../services/auth'
 
 export default class Pedido extends Component {
 
@@ -13,7 +15,8 @@ export default class Pedido extends Component {
         products: [],
         selectedProducts: [],
         tamanho: '',
-        qtde: 0
+        qtde: 0,
+        valorTotal: 0.00
     }
 
     cleanObjects = () => {
@@ -116,9 +119,15 @@ export default class Pedido extends Component {
         document.getElementById("myDropdown").style.display = "none";
     }
 
-    storeProsuct = () => {
+    storeProduct = () => {
 
         const prod = this.state.product;
+        const preco = prod.preco;
+        const qtde = this.state.qtde;
+
+        const valorAnterior = this.state.valorTotal;
+
+        const valorAtual = valorAnterior + (preco * qtde);
 
         const novoProduto = {
             id: prod.id,
@@ -130,7 +139,10 @@ export default class Pedido extends Component {
             quantidade: this.state.qtde
         }
 
-        this.setState({ selectedProducts: [...this.state.selectedProducts, novoProduto] });
+        this.setState({
+            selectedProducts: [...this.state.selectedProducts, novoProduto],
+            valorTotal: valorAtual
+        });
         this.cleanObjects();
     }
 
@@ -145,14 +157,48 @@ export default class Pedido extends Component {
     }
 
     handleDeleteItem = (id) => {
-        const prevProducts = this.state.selectedProducts.filter(item => item.id !== id);
+        const produtosFiltrados = this.state.selectedProducts.filter(item => item.id !== id);
+        const produtoExcluido = this.state.selectedProducts.find(item => item.id === id);
+        const valorAnterior = this.state.valorTotal;
+        const valorAtual = valorAnterior - (produtoExcluido.preco * produtoExcluido.quantidade);
+
         this.setState({
-            selectedProducts: prevProducts
+            selectedProducts: produtosFiltrados,
+            valorTotal: valorAtual
         });
     }
 
-    sendSelectedProductsToApi = () => {
+    submitCadastro = async e => {
+        e.preventDefault();
 
+        if (!this.state.selectedProducts) {
+            setTimeout(this.hiddingAlert, 3000);
+            this.setState({ showErrorClassName: 'showError', error: "Preencha todos os campos!" });
+        } else {
+            try {
+
+                let movimento = {
+                    tipo: 'entrada',
+                    usuario: parseInt(getUserID()),
+                    devolucao: false,
+                    produtos: this.state.selectedProducts,
+                    valorTotal: this.state.valorTotal
+                }
+
+                console.log(movimento);
+
+                /*let sendMovimentacao = getGravarMovimentacao(movimento);
+                console.log(sendMovimentacao);
+                sendMovimentacao();*/
+
+                setTimeout(this.hiddingAlert, 3000);
+                this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
+
+            } catch (err) {
+                setTimeout(this.hiddingAlert, 3000);
+                this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
+            }
+        }
     }
 
     render() {
@@ -245,7 +291,7 @@ export default class Pedido extends Component {
                                 type='button'
                                 value='Adicionar'
                                 className='add-button'
-                                onClick={() => { this.storeProsuct() }}
+                                onClick={() => { this.storeProduct() }}
                             />
                         </div>
                         <div className='product-list'>
@@ -260,10 +306,26 @@ export default class Pedido extends Component {
                                 )
                             )}
                         </div>
+                        <div className='input-2rows'>
+                            <label id='total-preco-label'><b>Valor total do pedido:</b></label>
+                            <CurrencyInput
+                                    id='total-preco'
+                                    className='fixedValue'
+                                    decimalSeparator=","
+                                    thousandSeparator="."
+                                    prefix="R$"
+                                    readOnly={true}
+                                    ref='valor'
+                                    value={this.state.valorTotal}
+                                />
+                        </div>
                         <div className='button-div'>
-                            <button
-                                onClick={this.sendSelectedProductsToApi}
-                            >Salvar</button>
+                            <input
+                                id='submit-button'
+                                type='button'
+                                value='Salvar'
+                                onClick={this.submitCadastro}
+                            />
                         </div>
                     </div>
                 </form>
