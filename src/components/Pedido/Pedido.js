@@ -178,7 +178,7 @@ export default class Pedido extends Component {
             try {
 
                 let movimento = {
-                    tipo: 'entrada',
+                    tipo: 'saida',
                     usuario: parseInt(getUserID()),
                     devolucao: false,
                     produtos: this.state.selectedProducts,
@@ -192,7 +192,7 @@ export default class Pedido extends Component {
                 sendMovimentacao();*/
 
                 setTimeout(this.hiddingAlert, 3000);
-                this.setState({ showErrorClassName: 'showSucess', error: "Salvo com sucesso!" });
+                this.setState({ showErrorClassName: 'showSucess', error: "Pedido emitido com sucesso!" });
 
             } catch (err) {
                 setTimeout(this.hiddingAlert, 3000);
