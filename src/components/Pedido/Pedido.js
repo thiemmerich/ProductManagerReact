@@ -245,6 +245,7 @@ export default class Pedido extends Component {
                             placeholder='Nome do cliente'
                             value={this.state.cliente}
                             ref='nome-cliente'
+                            onChange={e => this.setState({ cliente: e.target.value })}
                         />
                         <div className='input-2rows'>
                             <div className='input-cod'>
