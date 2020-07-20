@@ -16,7 +16,8 @@ export default class Pedido extends Component {
         selectedProducts: [],
         tamanho: '',
         qtde: 0,
-        valorTotal: 0.00
+        valorTotal: 0.00,
+        cliente: ''
     }
 
     cleanObjects = () => {
@@ -32,6 +33,18 @@ export default class Pedido extends Component {
         this.refs.descricao.value = '';
         this.refs.tamanho.value = '';
         this.refs.qtde.value = 0;
+    }
+
+    cleanState = () => {
+        this.setState({
+            product: {},
+            products: [],
+            selectedProducts: [],
+            tamanho: '',
+            qtde: 0,
+            valorTotal: 0.00,
+            cliente: ''
+        });
     }
 
     hiddingAlert = () => {
@@ -175,29 +188,48 @@ export default class Pedido extends Component {
             setTimeout(this.hiddingAlert, 3000);
             this.setState({ showErrorClassName: 'showError', error: "Preencha todos os campos!" });
         } else {
-            try {
 
-                let movimento = {
-                    tipo: 'saida',
-                    usuario: parseInt(getUserID()),
-                    devolucao: false,
-                    produtos: this.state.selectedProducts,
-                    valorTotal: this.state.valorTotal
+            var itens = [];
+
+            var pedido = {
+                idUsuario: parseInt(getUserID()),
+                nomeCliente: this.state.cliente,
+                valorTotal: this.state.valorTotal
+            }
+
+            this.state.selectedProducts.forEach(element => {
+                var precoUnit = element.preco;
+                var qtde = element.quantidade;
+                var valorTotalProd = (precoUnit * qtde);
+
+                var item = {
+                    idProduto: element.id,
+                    idPedido: 0,
+                    tamanho: element.tamanho,
+                    quantidade: element.quantidade,
+                    valorTotal: valorTotalProd
                 }
 
-                console.log(movimento);
+                itens.push(item);
+            });
 
-                /*let sendMovimentacao = getGravarMovimentacao(movimento);
-                console.log(sendMovimentacao);
-                sendMovimentacao();*/
-
-                setTimeout(this.hiddingAlert, 3000);
-                this.setState({ showErrorClassName: 'showSucess', error: "Pedido emitido com sucesso!" });
-
-            } catch (err) {
-                setTimeout(this.hiddingAlert, 3000);
-                this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
+            var envio = {
+                pedido: pedido,
+                itens: itens
             }
+
+            await api.post('/pedido/', envio)
+                .then((envio) => {
+                    setTimeout(this.hiddingAlert, 3000);
+                    this.setState({ showErrorClassName: 'showSucess', error: "Pedido emitido com sucesso!" });
+                    console.log(envio);
+                    this.cleanObjects();
+                    this.cleanState();
+                })
+                .catch((err) => {
+                    setTimeout(this.hiddingAlert, 3000);
+                    this.setState({ showErrorClassName: 'showError', error: "ERRO: " + err });
+                });
         }
     }
 
@@ -207,6 +239,13 @@ export default class Pedido extends Component {
                 <p className={this.state.showErrorClassName}>{this.state.error}</p>
                 <form>
                     <div className='pedido-container'>
+                        <label ><b>Cliente</b></label>
+                        <input
+                            className='text-field-drop'
+                            placeholder='Nome do cliente'
+                            value={this.state.cliente}
+                            ref='nome-cliente'
+                        />
                         <div className='input-2rows'>
                             <div className='input-cod'>
                                 <label ><b>Codigo</b></label>
@@ -309,15 +348,15 @@ export default class Pedido extends Component {
                         <div className='input-2rows'>
                             <label id='total-preco-label'><b>Valor total do pedido:</b></label>
                             <CurrencyInput
-                                    id='total-preco'
-                                    className='fixedValue'
-                                    decimalSeparator=","
-                                    thousandSeparator="."
-                                    prefix="R$"
-                                    readOnly={true}
-                                    ref='valor'
-                                    value={this.state.valorTotal}
-                                />
+                                id='total-preco'
+                                className='fixedValue'
+                                decimalSeparator=","
+                                thousandSeparator="."
+                                prefix="R$"
+                                readOnly={true}
+                                ref='valor'
+                                value={this.state.valorTotal}
+                            />
                         </div>
                         <div className='button-div'>
                             <input
