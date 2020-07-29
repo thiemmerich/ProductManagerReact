@@ -1,0 +1,21 @@
+.pedidos-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.pedidos-main .header{
+    display: flex;
+}
+
+.pedidos-main .body{
+    display: flex;
+}
+
+.pedidos-main .product-list {
+    overflow-y: auto;    
+    border: 1px solid rgb(71, 71, 71);
+    height: 200px;
+    border-radius: 5px;
+    padding: 1px 1px 1px 1px;
+    background-color: #fff;
+}

@@ -1,10 +1,25 @@
   .login-screen {
+    height: 500px;
     background: #3f3f3f;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+  }
+
+  .login-screen form {
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #000000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  @media only screen and (max-width: 500px) {
+      form {
+        margin: 10px;
+      }
   }
 
   .login-screen input[type=text], input[type=password] {
@@ -25,7 +40,7 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 400px;
+    width: 100%;
     border-radius: 5px;
     font-weight: bold;
   }
@@ -34,15 +49,9 @@
     opacity: 0.8;
   }
 
-  .login-screen form {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #000000;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
   .login-screen img.avatar {
-    margin-left: 20px;
+    padding: 12px 20px;
+    width: 100%;
   }
 
   .login-screen .container {

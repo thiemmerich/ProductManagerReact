@@ -6,6 +6,7 @@
 }
 
 body {
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     background: #3f3f3f;
     color: #333333;

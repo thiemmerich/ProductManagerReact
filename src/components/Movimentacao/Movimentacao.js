@@ -17,6 +17,7 @@ function Movimentacao(props) {
         dataHora: "DataHora",
         User_name: 'Usuario',
     }
+    
     let loadData = async (pageNumber) => {
         let recordsPerPage = 10;
         //console.log('/estoque/'+this.recordsPerPage+'/page/'+pageNumber);

@@ -1,12 +1,8 @@
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -9%);
+  width: 100%;
+  max-width: 800px;
+  position: absolute;
+  align-self: center;
   background: rgb(167, 167, 167);
   border-radius: 5px;
   box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
@@ -16,6 +12,7 @@
 .modal-main {
   border-radius: 5px;
   height: 100%;
+  padding: 16px;
 }
 
 .display-block {
@@ -59,4 +56,15 @@
 .modal .formTitle button:hover {
   background: rgb(134, 134, 134);
   color: rgb(78, 78, 78);
+}
+
+@media only screen and (max-width: 620) {
+  
+  .modal-main {
+    padding: 3px;
+  }
+
+  .modal {
+    max-width: 400px;
+  }
 }

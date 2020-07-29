@@ -13,14 +13,15 @@
 
 .main-header .logo {
     height: 50px;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     border: 1px solid white;
     margin: 20px;
     border-radius: 2px;
 }
 
 .main-header .logout-button {
-    margin-right: 20px;
+    margin-right: 10px;
     background-color: rgb(167, 167, 167);
     color: white;
     padding: 10px 15px;

@@ -317,7 +317,7 @@ export default class Pedido extends Component {
                                     onChange={e => this.setState({ tamanho: e.target.value })}
                                 />
                             </div>
-                            <div>
+                            <div className='div-quantidade'>
                                 <label ><b>Quantidade</b></label>
                                 <input
                                     className='text-field'
